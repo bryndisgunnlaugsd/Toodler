@@ -17,7 +17,7 @@ export function Boards() {
                         This button goes to lists
                     </Text>
             </TouchableOpacity>
-            <BoardList />
+            <BoardList/>
         </View>
     )
 }
