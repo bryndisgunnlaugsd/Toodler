@@ -14,7 +14,7 @@ export default StyleSheet.create({
     },
 
     buttonText:{
-        color: 'white'
+        color: 'black'
     }
 
 
