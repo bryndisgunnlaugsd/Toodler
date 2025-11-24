@@ -1,16 +1,3 @@
-import { View, Text } from "react-native";
+import { Boards } from '@/src/views/boards/boards';
 
-export default function Boards() {
-    return (
-        <View 
-        style={{
-            flex: 1
-        }}>
-            <Text>
-                Here you should see your boards
-            </Text>
-            
-        </View>
-    )
-
-}
+export default Boards;

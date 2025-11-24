@@ -14,10 +14,12 @@ export default function RootLayout() {
     
     <Stack
       screenOptions={{
+        headerShown: true,
         headerTintColor: 'black',
         headerTitleStyle: {
           fontWeight: "bold"
         }
+        
       }}>
       <Stack.Screen 
       name="index"
@@ -29,6 +31,18 @@ export default function RootLayout() {
       name="boards"
       options={{
         title: "My Boards",
+      }}/>
+
+      <Stack.Screen 
+      name="lists"
+      options={{
+        title: "My Lists",
+      }}/>
+
+      <Stack.Screen 
+      name="tasks"
+      options={{
+        title: "My Tasks",
       }}/>
 
     </Stack>;

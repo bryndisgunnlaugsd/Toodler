@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-import { primaryBlue, gray700 } from '@/src/styles/colors';
+import { primaryBlue, gray700, primaryRed, primaryGreen } from '@/src/styles/colors';
 
 export default StyleSheet.create({
     container: {
         flex: 1,
         padding: 20,
-        backgroundColor: primaryBlue,
+        backgroundColor: primaryGreen,
         alignItems: "center",
         justifyContent: "space-evenly"
     },
@@ -18,7 +18,7 @@ export default StyleSheet.create({
 
     paragraph: {
         textAlign: "center",
-        color: "white"
+        color: "black"
     },
 
     button: {
