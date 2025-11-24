@@ -1,6 +1,6 @@
 import data from "@/src/data/data.json";
 import styles from "./styles";
-import { FlatList, View } from "react-native";
+import { FlatList, View, Pressable, Text } from "react-native";
 import { Board } from "@/src/types/board";
 import { BoardThumbnail } from "./image-thumbnail/board-thumbnail";
 import { useRouter } from "expo-router";
@@ -13,7 +13,7 @@ export function BoardList() {
             <FlatList<Board>
                 numColumns={1}
                 data={boards}
-                keyExtractor={(image) => image.id.toString()}
+                keyExtractor={(board) => board.id.toString()}
                 renderItem={({ item }) => <BoardThumbnail  
                 board={item}
                 onPress={() => 
@@ -25,6 +25,14 @@ export function BoardList() {
                 />}
                 
             />
+            <Pressable
+                style={styles.plusbutton}
+                onPress={() => {
+                    router.push("/createboard")
+                }}
+            >
+                <Text style={styles.plusbuttontext}>+</Text>
+            </Pressable>
         </View>
     );
 }
