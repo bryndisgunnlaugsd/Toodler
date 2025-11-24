@@ -1,5 +1,5 @@
+import { white } from '@/src/styles/colors';
 import { StyleSheet } from 'react-native';
-import { primaryBlue, gray700, primaryRed, white } from '@/src/styles/colors';
 
 export default StyleSheet.create({
     container: {
@@ -14,7 +14,7 @@ export default StyleSheet.create({
     },
 
     buttonText:{
-        color: 'white'
+        color: 'black'
     }
 
 
