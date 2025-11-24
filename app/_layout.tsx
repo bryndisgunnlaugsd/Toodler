@@ -19,6 +19,13 @@ export default function RootLayout() {
       options={{
         title: "Toodler",
       }}/>
+
+      <Stack.Screen 
+      name="boards"
+      options={{
+        title: "My Boards",
+      }}/>
+
     </Stack>;
 
   </GestureHandlerRootView>
