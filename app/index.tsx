@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { Text, View } from "react-native";
 
 export default function Index() {
@@ -13,3 +14,11 @@ export default function Index() {
     </View>
   );
 }
+=======
+import { Main } from '@/src/views/main/main';
+
+
+export default Main;
+  
+
+>>>>>>> origin/Dev
