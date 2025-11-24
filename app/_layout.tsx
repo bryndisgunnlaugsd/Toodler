@@ -1,9 +1,4 @@
 import { Stack } from "expo-router";
-<<<<<<< HEAD
-
-export default function RootLayout() {
-  return <Stack />;
-=======
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 
@@ -50,5 +45,4 @@ export default function RootLayout() {
   </GestureHandlerRootView>
   );
  
->>>>>>> origin/Dev
 }
