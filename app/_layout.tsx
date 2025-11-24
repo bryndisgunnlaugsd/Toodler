@@ -9,7 +9,7 @@ export default function RootLayout() {
     
     <Stack
       screenOptions={{
-        headerShown: false,
+        headerShown: true,
         headerTintColor: 'black',
         headerTitleStyle: {
           fontWeight: "bold"
