@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { primaryBlue, gray700, primaryRed, primaryGreen } from '@/src/styles/colors';
+// src/views/lists/styles.ts (or styles.tsx)
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
@@ -34,4 +34,4 @@ export default StyleSheet.create({
         textAlign: 'center',
         fontSize: 16,
     },
-})
+});
