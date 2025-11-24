@@ -1,5 +1,48 @@
 import { Stack } from "expo-router";
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+
 
 export default function RootLayout() {
-  return <Stack />;
+  
+  return (
+  <GestureHandlerRootView>
+    
+    <Stack
+      screenOptions={{
+        headerShown: false,
+        headerTintColor: 'black',
+        headerTitleStyle: {
+          fontWeight: "bold"
+        }
+        
+      }}>
+      <Stack.Screen 
+      name="index"
+      options={{
+        title: "Toodler",
+      }}/>
+
+      <Stack.Screen 
+      name="boards"
+      options={{
+        title: "My Boards",
+      }}/>
+
+      <Stack.Screen 
+      name="lists"
+      options={{
+        title: "My Lists",
+      }}/>
+
+      <Stack.Screen 
+      name="tasks"
+      options={{
+        title: "My Tasks",
+      }}/>
+
+    </Stack>;
+
+  </GestureHandlerRootView>
+  );
+ 
 }
