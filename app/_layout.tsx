@@ -9,10 +9,12 @@ export default function RootLayout() {
     
     <Stack
       screenOptions={{
+        headerShown: false,
         headerTintColor: 'black',
         headerTitleStyle: {
           fontWeight: "bold"
         }
+        
       }}>
       <Stack.Screen 
       name="index"
