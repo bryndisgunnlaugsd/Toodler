@@ -7,7 +7,7 @@ export default StyleSheet.create({
         padding: 20,
         backgroundColor: white,
         alignItems: "center",
-        justifyContent: "space-evenly"
+        justifyContent: "flex-start"
     },
 
     button: {
@@ -16,7 +16,6 @@ export default StyleSheet.create({
     buttonText:{
         color: 'black'
     }
-
 
 
 })
