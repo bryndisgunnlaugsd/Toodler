@@ -48,6 +48,12 @@ export default function RootLayout() {
         title: "Create List" 
       }}/>
 
+      <Stack.Screen
+      name="create-task"
+      options={{ 
+        title: "Create Task" 
+      }}/>
+
     </Stack>;
     </ListStoreProvider>
 

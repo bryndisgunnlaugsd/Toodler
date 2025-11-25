@@ -8,7 +8,7 @@ import styles from "./styles";
 export function CreateTask() {
 
     const router = useRouter();
-    const {listId} = useLocalSearchParams();
+    const {listId, taskId} = useLocalSearchParams();
 
-    
+
 }
