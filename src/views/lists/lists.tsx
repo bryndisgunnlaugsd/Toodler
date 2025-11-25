@@ -3,23 +3,39 @@ import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import data from "../../data/data.json";
 import { ListCatalogue } from "@/src/components/list-catalogue/list-catalogue";
+import { Board } from "@/src/types/board"
 
 export function Lists() {
     const router = useRouter();
     const { boardId } = useLocalSearchParams();
 
-    const filteredLists = data.lists.filter(
-        list => list.boardId === Number(boardId)
-    );
+    const currentBoard: Board | undefined = data.boards.find(
+    (board) => board.id === Number(boardId)
+  );
 
     return(
         
         <View style={styles.container}>
             <Text style={styles.title}>
-                Lists for Board {boardId}
+                {currentBoard?.name}
             </Text>
             
-            <ListCatalogue/>
+            
+
+            <TouchableOpacity
+                onPress={() =>
+                    router.push({
+                    pathname: "/create-list",
+                    params: { boardId: boardId?.toString() },
+                    })
+                }
+                >
+          <Text style={styles.addButton}>＋</Text>
+        </TouchableOpacity>
+
+        <ListCatalogue/>
+
+
         </View>
     )
 }

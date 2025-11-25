@@ -34,4 +34,14 @@ export default StyleSheet.create({
         textAlign: 'center',
         fontSize: 16,
     },
+    header: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 24,
+    },
+    addButton: {
+        fontSize: 28,
+    },
+
 })

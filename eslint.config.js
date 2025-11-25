@@ -11,7 +11,7 @@ module.exports = defineConfig([
       'error',
       {
         selector: 'function',
-        format: ['snake_case'],
+        format: ['PascalCase'],
       },
       {
         selector: 'class',
@@ -19,21 +19,21 @@ module.exports = defineConfig([
       },
       {
         selector: 'variable',
-        format: ['PascalCase'],
+        format: ['camelCase'],
       },
     ],
 
-    // --- Docstrings ---
-    'require-jsdoc': [
-      'error',
-      {
-        require: {
-          FunctionDeclaration: true,
-          MethodDefinition: true,
-        },
-      },
-    ],
-    'valid-jsdoc': 'error',
+    // // --- Docstrings ---
+    // 'require-jsdoc': [
+    //   'error',
+    //   {
+    //     require: {
+    //       FunctionDeclaration: true,
+    //       MethodDefinition: true,
+    //     },
+    //   },
+    // ],
+    // 'valid-jsdoc': 'error',
 
     // --- Spacing ---
     'padding-line-between-statements': [
@@ -44,7 +44,7 @@ module.exports = defineConfig([
     'no-trailing-spaces': 'error',
 
     // --- Basic formatting ---
-    'quotes': ['error', 'single'],
+    'quotes': ['error', 'double'],
     'semi': ['error', 'always'],
     'eqeqeq': ['error', 'always'],
     'max-len': ['error', { code: 100 }],

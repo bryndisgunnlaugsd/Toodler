@@ -41,6 +41,12 @@ export default function RootLayout() {
         title: "My Tasks",
       }}/>
 
+      <Stack.Screen
+      name="create-list"
+      options={{ 
+        title: "Create List" 
+      }}/>
+
     </Stack>;
 
   </GestureHandlerRootView>
