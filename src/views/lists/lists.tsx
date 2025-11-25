@@ -20,9 +20,22 @@ export function Lists() {
                 {currentBoard?.name}
             </Text>
             
-            <ListCatalogue/>
-
             
+
+            <TouchableOpacity
+                onPress={() =>
+                    router.push({
+                    pathname: "/create-list",
+                    params: { boardId: boardId?.toString() },
+                    })
+                }
+                >
+          <Text style={styles.addButton}>＋</Text>
+        </TouchableOpacity>
+
+        <ListCatalogue/>
+
+
         </View>
     )
 }
