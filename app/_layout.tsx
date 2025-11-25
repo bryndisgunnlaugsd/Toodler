@@ -1,12 +1,13 @@
 import { Stack } from "expo-router";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { ListStoreProvider } from "@/src/storage/list-storage";
 
 
 export default function RootLayout() {
   
   return (
   <GestureHandlerRootView>
-    
+    <ListStoreProvider>
     <Stack
       screenOptions={{
         headerShown: true,
@@ -48,6 +49,7 @@ export default function RootLayout() {
       }}/>
 
     </Stack>;
+    </ListStoreProvider>
 
   </GestureHandlerRootView>
   );
