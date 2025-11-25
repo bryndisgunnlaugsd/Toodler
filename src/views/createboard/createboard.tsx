@@ -1,11 +1,13 @@
 import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "./styles";
-import { useRouter } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import type { CameraViewRef } from "expo-camera";
 import * as ImagePicker from "expo-image-picker";
 import { Linking } from "react-native";
+import { ScrollView } from "react-native";
+import { useBoardStore } from "@/src/storage/board-storage";
 
 interface PhotoResult {
   uri: string;
@@ -44,7 +46,7 @@ const CameraComponent = ({ onPictureTaken, onClose }: CameraComponentProps) => {
 
     const takePicture = async () => {
     if (cameraRef.current) {
-        const photo = await cameraRef.current.capture();
+        const photo = await cameraRef.current.takePictureAsync();
         if (photo) {
         onPictureTaken(photo);
         }
@@ -76,12 +78,36 @@ export default CameraComponent;
 
 
 export function CreateBoard() {
+
   const router = useRouter();
+
+  const {boardId} = useLocalSearchParams();
+  const {boards, addBoard, updateBoard } = useBoardStore();
+
+  const editing = !!boardId;
+
+  const existingBoard = editing
+  ? boards.find((b) => b.id === Number(boardId))
+  : undefined;
 
   const [name, setName] = useState("");
   const [description, setDesc] = useState("");
   const [showCamera, setShowCamera] = useState(false);
   const [photo, setPhoto] = useState<PhotoResult | null>(null);
+
+
+  useEffect(() => {
+  if (editing && existingBoard) {
+    setName(existingBoard.name);
+    setDesc(existingBoard.description);
+    setPhoto(
+      existingBoard.thumbnailPhoto
+        ? { uri: existingBoard.thumbnailPhoto, width: 0, height: 0 }
+        : null
+    );
+  }
+  }, [editing, existingBoard]);
+
 
   const pickImage = async () => {
     const { status, canAskAgain  } = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -112,19 +138,27 @@ export function CreateBoard() {
   };
 
   const handleCreate = () => {
-    if (!name.trim()) return;
+  const trimmedName = name.trim();
+  if (!trimmedName) return;
 
-    console.log("Create Board:", {
-      name: name.trim(),
-      description: description.trim(),
-      photo: photo?.uri,
+  if (editing && boardId) {
+    // EDIT MODE
+    updateBoard(Number(boardId), {
+      name: trimmedName,
+      description,
+      thumbnailPhoto: photo?.uri,
     });
+  } else {
+    // CREATE MODE
+    addBoard(trimmedName, description, photo?.uri ?? "");
+  }
 
-    router.back();
-  };
+  router.back();
+};
+  
 
   return (
-    <View style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <Text style={styles.title}>Create Board</Text>
 
       <View style={styles.section}>
@@ -195,9 +229,9 @@ export function CreateBoard() {
           style={[styles.button, styles.buttonGrey]}
           onPress={handleCreate}
         >
-          <Text style={styles.buttonTextDark}>Create</Text>
+          <Text style={styles.buttonTextDark}>{editing ? "Save" : "Create"}</Text>
         </TouchableOpacity>
       </View>
-    </View>
+    </ScrollView>
   );
 }
