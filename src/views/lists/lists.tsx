@@ -20,8 +20,6 @@ export function Lists() {
                 {currentBoard?.name}
             </Text>
             
-            
-
             <TouchableOpacity
                 onPress={() =>
                     router.push({
