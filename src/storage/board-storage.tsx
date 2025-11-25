@@ -12,11 +12,10 @@ useEffect(() => {
     setBoards(data.boards);
 }, []);
 
-    const nextId = boards.length > 0
+    const addBoard = (name: string, description: string, thumbnailPhoto: string) => {
+        const nextId = boards.length > 0
         ? Math.max(...boards.map(b => b.id)) + 1
         : 1;
-
-    const addBoard = (name: string, description: string, thumbnailPhoto: string) => {
         const newBoard: Board = {
             id: nextId,
             name,

@@ -1,12 +1,14 @@
 import { Stack } from "expo-router";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ListStoreProvider } from "@/src/storage/list-storage";
+import { BoardStoreProvider } from "@/src/storage/board-storage";
 
 
 export default function RootLayout() {
   
   return (
   <GestureHandlerRootView>
+    <BoardStoreProvider> 
     <ListStoreProvider>
     <Stack
       screenOptions={{
@@ -54,9 +56,16 @@ export default function RootLayout() {
         title: "Create Task" 
       }}/>
 
+      <Stack.Screen
+      name="create-board"
+      options={{
+        title: "Create Board",
+      }}
+    />
+
     </Stack>;
     </ListStoreProvider>
-
+    </BoardStoreProvider>
   </GestureHandlerRootView>
   );
  

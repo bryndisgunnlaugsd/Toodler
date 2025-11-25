@@ -4,9 +4,10 @@ import { FlatList, View, Pressable, Text } from "react-native";
 import { Board } from "@/src/types/board";
 import { BoardThumbnail } from "./image-thumbnail/board-thumbnail";
 import { useRouter } from "expo-router";
+import { useBoardStore } from "@/src/storage/board-storage";
 
 export function BoardList() {
-    const boards = data.boards as Board[];
+    const { boards } = useBoardStore();
     const router = useRouter();
     return (
         <View style={styles.listContainer}>
