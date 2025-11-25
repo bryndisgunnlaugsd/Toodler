@@ -30,6 +30,7 @@ export default function RootLayout() {
       name="boards"
       options={{
         title: "My Boards",
+        headerBackVisible: false,
       }}/>
 
       <Stack.Screen 
