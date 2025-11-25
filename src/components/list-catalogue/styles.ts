@@ -17,7 +17,7 @@ export default StyleSheet.create({
         borderRadius: 8,
         borderWidth: 1,
         borderColor: '#ddd',
-        height: 70
+        height: 60
     },
     listName: {
         fontSize: 18,
