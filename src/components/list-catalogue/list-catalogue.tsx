@@ -1,15 +1,22 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
-import data from "../../data/data.json";
+//import data from "../../data/data.json";
+import { useListStore } from "@/src/storage/list-storage";
 
 export function ListCatalogue() {
     const router = useRouter();
     const { boardId } = useLocalSearchParams();
 
-    const filteredLists = data.lists.filter(
-        list => list.boardId === Number(boardId)
+    const { lists } = useListStore();
+
+    const filteredLists = lists.filter(
+    list => list.boardId === Number(boardId)
     );
+
+    // const filteredLists = data.lists.filter(
+    //     list => list.boardId === Number(boardId)
+    // );
     return(
             
         <View style={styles.container}>

@@ -2,6 +2,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
+import { useListStore } from "@/src/storage/list-storage";
 
 //Color options
 const COLORS = [
@@ -21,17 +22,14 @@ export function CreateList() {
   const [name, setName] = useState("");
   const [color, setColor] = useState(COLORS[0]);
 
+  const { addList } = useListStore();
+
   const handleCreate = () => {
-    if (!name.trim()) return;
+    if (!name.trim() || !boardId) return;
 
-    // TODO: actually save the new list (e.g. to FileSystem / API)
-    console.log("Create list:", {
-      boardId,
-      name: name.trim(),
-      color,
-    });
+    addList(Number(boardId), name.trim(), color);
 
-    router.back(); // go back to Lists page
+    router.back();
   };
 
   return (
