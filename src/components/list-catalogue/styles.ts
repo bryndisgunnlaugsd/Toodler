@@ -7,16 +7,13 @@ export default StyleSheet.create({
     paddingTop: 20,
   },
 
-  /* --------------------------------------------- */
-  /*  LIST CARD                                    */
-  /* --------------------------------------------- */
+  /* ------------ LIST CARD ------------ */
 
   listItem: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
 
-    backgroundColor: "#ffffff00", // actual color applied dynamically
     borderRadius: 18,
 
     paddingHorizontal: 16,
@@ -24,16 +21,22 @@ export default StyleSheet.create({
     marginBottom: 20,
 
     shadowColor: "#000",
-    shadowOpacity: 0.10,
+    shadowOpacity: 0.1,
     shadowOffset: { width: 0, height: 3 },
     shadowRadius: 6,
     elevation: 4,
 
-    position: "relative",
-    zIndex: 10,
+    position: "relative", // allow absolute children
+    zIndex: 1,
+    overflow: "visible",  // make sure menu can extend outside card
   },
 
-  // Content on the left (the name)
+  // extra style applied when menu is open
+  listItemActive: {
+    zIndex: 100,
+    elevation: 20,
+  },
+
   listInfo: {
     flex: 1,
   },
@@ -44,9 +47,7 @@ export default StyleSheet.create({
     color: "#000",
   },
 
-  /* --------------------------------------------- */
-  /*  THREE DOTS MENU                              */
-  /* --------------------------------------------- */
+  /* ------------ THREE DOTS MENU ------------ */
 
   listMenuWrapper: {
     position: "relative",
@@ -72,16 +73,15 @@ export default StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 10,
     paddingHorizontal: 16,
-
     width: 150,
 
     shadowColor: "#000",
-    shadowOpacity: 0.20,
+    shadowOpacity: 0.2,
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 8,
-    elevation: 6,
+    elevation: 21,
 
-    zIndex: 50,
+    zIndex: 101,
   },
 
   listMenuItem: {

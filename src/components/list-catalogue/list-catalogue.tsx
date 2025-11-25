@@ -38,46 +38,58 @@ export function ListCatalogue() {
         data={filteredLists}
         keyExtractor={(item) => item.id.toString()}
         removeClippedSubviews={false}
-        renderItem={({ item }) => (
-          <View style={[styles.listItem, { backgroundColor: item.color }]}>
-            {/* main clickable area: open tasks */}
-            <TouchableOpacity
-              style={styles.listInfo}
-              onPress={() =>
-                router.push({
-                  pathname: "/tasks",
-                  params: { listId: item.id.toString() },
-                })
-              }
-            >
-              <Text style={styles.listName}>{item.name}</Text>
-            </TouchableOpacity>
+        renderItem={({ item }) => {
+          const isMenuOpen = openMenuId === item.id;
 
-            {/* 3-dots menu */}
-            <View style={styles.listMenuWrapper}>
+          return (
+            <View
+              style={[
+                styles.listItem,
+                { backgroundColor: item.color },
+                isMenuOpen && styles.listItemActive, // 👈 raise this card
+              ]}
+            >
+              {/* main clickable area: open tasks */}
               <TouchableOpacity
-                style={styles.listMenuButton}
+                style={styles.listInfo}
                 onPress={() =>
-                  setOpenMenuId((prev) => (prev === item.id ? null : item.id))
+                  router.push({
+                    pathname: "/tasks",
+                    params: { listId: item.id.toString() },
+                  })
                 }
               >
-                <Text style={styles.listMenuIcon}>⋮</Text>
+                <Text style={styles.listName}>{item.name}</Text>
               </TouchableOpacity>
 
-              {openMenuId === item.id && (
-                <View style={styles.listMenu}>
-                  <TouchableOpacity onPress={() => handleEdit(item.id)}>
-                    <Text style={styles.listMenuItem}>Edit</Text>
-                  </TouchableOpacity>
+              {/* 3-dots menu */}
+              <View style={styles.listMenuWrapper}>
+                <TouchableOpacity
+                  style={styles.listMenuButton}
+                  onPress={() =>
+                    setOpenMenuId((prev) =>
+                      prev === item.id ? null : item.id
+                    )
+                  }
+                >
+                  <Text style={styles.listMenuIcon}>⋮</Text>
+                </TouchableOpacity>
 
-                  <TouchableOpacity onPress={() => handleDelete(item.id)}>
-                    <Text style={styles.listMenuItemDelete}>Delete</Text>
-                  </TouchableOpacity>
-                </View>
-              )}
+                {isMenuOpen && (
+                  <View style={styles.listMenu}>
+                    <TouchableOpacity onPress={() => handleEdit(item.id)}>
+                      <Text style={styles.listMenuItem}>Edit</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity onPress={() => handleDelete(item.id)}>
+                      <Text style={styles.listMenuItemDelete}>Delete</Text>
+                    </TouchableOpacity>
+                  </View>
+                )}
+              </View>
             </View>
-          </View>
-        )}
+          );
+        }}
         ListEmptyComponent={<Text>No lists found for this board</Text>}
       />
     </View>
