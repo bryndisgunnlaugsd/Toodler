@@ -4,10 +4,7 @@ import { primaryBlue, gray700, primaryRed, primaryGreen, primaryPurple } from '@
 export default StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        backgroundColor: primaryPurple,
-        alignItems: "center",
-        justifyContent: "space-evenly"
+        padding: 16
     },
 
     image: {
