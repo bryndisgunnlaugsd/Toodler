@@ -6,7 +6,7 @@ export function Main() {
     const router = useRouter();
     return (
     <View style={styles.container}>
-        <Image style={styles.image} source={require("../../../assets/images/react-logo.png")} />
+        <Image style={styles.image} source={require("../../../assets/images/toodler_logo.png")} />
         <Text style={styles.paragraph}>
         Get More Done!!
         </Text>

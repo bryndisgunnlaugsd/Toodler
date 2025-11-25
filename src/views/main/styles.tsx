@@ -1,18 +1,18 @@
 import { StyleSheet } from 'react-native';
-import { primaryBlue, gray700 } from '@/src/styles/colors';
+import { white, black} from '@/src/styles/colors';
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        backgroundColor: primaryBlue,
+        padding: 40,
+        backgroundColor: white,
         alignItems: "center",
         justifyContent: "space-evenly"
     },
 
     image: {
-        width: 200,
-        height: 200,
+        width: 500,
+        height: 550,
 
     },
 
@@ -23,19 +23,26 @@ export default StyleSheet.create({
 
     button: {
         marginTop: 30,
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 20,
-        paddingRight: 20,
-        borderColor: 'white',
-        borderWidth: 2,
-        backgroundColor: gray700,
+        paddingTop: 14,
+        paddingBottom: 14,
+        paddingLeft: 32,
+        paddingRight: 32,
+        backgroundColor: 'white',
+        borderRadius: 25,
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 1,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 8,
+        elevation: 8,
     },
 
-    buttonText:{
-        color: 'white'
+    buttonText: {
+        color: black,
+        fontSize: 18,
+        fontWeight: 'bold',
+        textAlign: 'center',
     }
-
-
-
-})
+})    
