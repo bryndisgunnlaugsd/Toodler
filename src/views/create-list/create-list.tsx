@@ -1,10 +1,10 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import { useListStore } from "@/src/storage/list-storage";
 
-//Color options
+// Color options
 const COLORS = [
   "#FBD2D7",
   "#F8D9B6",
@@ -15,38 +15,56 @@ const COLORS = [
 ];
 
 export function CreateList() {
-
   const router = useRouter();
-  const { boardId } = useLocalSearchParams();
+  const { boardId, listId } = useLocalSearchParams();
 
-  const [name, setName] = useState("");
-  const [color, setColor] = useState(COLORS[0]);
+  const { lists, addList, updateList } = useListStore();
 
-  const { addList } = useListStore();
+  const editing = !!listId;
 
-  const handleCreate = () => {
-    if (!name.trim() || !boardId) return;
+  const existingList = editing
+    ? lists.find((l) => l.id === Number(listId))
+    : undefined;
 
-    addList(Number(boardId), name.trim(), color);
+  const [name, setName] = useState(existingList?.name ?? "");
+  const [color, setColor] = useState<string>(existingList?.color ?? COLORS[0]);
+
+  // if lists load later, sync when existingList appears
+  useEffect(() => {
+    if (editing && existingList) {
+      setName(existingList.name);
+      setColor(existingList.color);
+    }
+  }, [editing, existingList]);
+
+  const handleSave = () => {
+    const trimmed = name.trim();
+    if (!trimmed) return;
+
+    if (editing && listId) {
+      // EDIT MODE
+      updateList(Number(listId), { name: trimmed, color });
+    } else if (boardId) {
+      // CREATE MODE
+      addList(Number(boardId), trimmed, color);
+    }
 
     router.back();
   };
 
   return (
-
-    //
     <View style={styles.container}>
-        <Text style={styles.title}>Create List</Text>
+      <Text style={styles.title}>{editing ? "Edit List" : "Create List"}</Text>
 
-        <View style={styles.section}>
-          <Text style={styles.label}>List Name</Text>
-          <TextInput
-            value={name}
-            onChangeText={setName}
-            placeholder="Enter list name"
-            placeholderTextColor="#999"
-            style={styles.input}
-          />
+      <View style={styles.section}>
+        <Text style={styles.label}>List Name</Text>
+        <TextInput
+          value={name}
+          onChangeText={setName}
+          placeholder="Enter list name"
+          placeholderTextColor="#999"
+          style={styles.input}
+        />
       </View>
 
       <View style={styles.section}>
@@ -81,9 +99,11 @@ export function CreateList() {
 
         <TouchableOpacity
           style={[styles.button, styles.buttonGrey]}
-          onPress={handleCreate}
+          onPress={handleSave}
         >
-          <Text style={styles.buttonTextDark}>Create</Text>
+          <Text style={styles.buttonTextDark}>
+            {editing ? "Save" : "Create"}
+          </Text>
         </TouchableOpacity>
       </View>
     </View>

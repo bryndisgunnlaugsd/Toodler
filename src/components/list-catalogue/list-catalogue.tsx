@@ -1,42 +1,85 @@
+import React, { useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
-//import data from "../../data/data.json";
 import { useListStore } from "@/src/storage/list-storage";
 
 export function ListCatalogue() {
-    const router = useRouter();
-    const { boardId } = useLocalSearchParams();
+  const router = useRouter();
+  const { boardId } = useLocalSearchParams();
 
-    const { lists } = useListStore();
+  const { lists, deleteList } = useListStore();
 
-    const filteredLists = lists.filter(
-    list => list.boardId === Number(boardId)
-    );
+  const [openMenuId, setOpenMenuId] = useState<number | null>(null);
 
-    // const filteredLists = data.lists.filter(
-    //     list => list.boardId === Number(boardId)
-    // );
-    return(
-            
-        <View style={styles.container}>
-            <FlatList
-                data={filteredLists}
-                keyExtractor={(item) => item.id.toString()}
-                renderItem={({ item }) => (
-                    <TouchableOpacity
-                        style={[styles.listItem, { backgroundColor: item.color }]}
-                        onPress={() => router.push({
-                            pathname: "/tasks",
-                            params: { listId: item.id.toString() }
-                        })}>
-                        <Text style={styles.listName}>{item.name}</Text>
-                    </TouchableOpacity>
-                )}
-                ListEmptyComponent={
-                    <Text>No lists found for this board</Text>
+  const filteredLists = lists.filter(
+    (list) => list.boardId === Number(boardId)
+  );
+
+  const handleEdit = (id: number) => {
+    router.push({
+      pathname: "/create-list",
+      params: {
+        boardId: boardId?.toString(),
+        listId: id.toString(),
+      },
+    });
+    setOpenMenuId(null);
+  };
+
+  const handleDelete = (id: number) => {
+    deleteList(id);
+    setOpenMenuId(null);
+  };
+
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={filteredLists}
+        keyExtractor={(item) => item.id.toString()}
+        removeClippedSubviews={false}
+        renderItem={({ item }) => (
+          <View style={[styles.listItem, { backgroundColor: item.color }]}>
+            {/* main clickable area: open tasks */}
+            <TouchableOpacity
+              style={styles.listInfo}
+              onPress={() =>
+                router.push({
+                  pathname: "/tasks",
+                  params: { listId: item.id.toString() },
+                })
+              }
+            >
+              <Text style={styles.listName}>{item.name}</Text>
+            </TouchableOpacity>
+
+            {/* 3-dots menu */}
+            <View style={styles.listMenuWrapper}>
+              <TouchableOpacity
+                style={styles.listMenuButton}
+                onPress={() =>
+                  setOpenMenuId((prev) => (prev === item.id ? null : item.id))
                 }
-            />
-        </View>
-        )
+              >
+                <Text style={styles.listMenuIcon}>⋮</Text>
+              </TouchableOpacity>
+
+              {openMenuId === item.id && (
+                <View style={styles.listMenu}>
+                  <TouchableOpacity onPress={() => handleEdit(item.id)}>
+                    <Text style={styles.listMenuItem}>Edit</Text>
+                  </TouchableOpacity>
+
+                  <TouchableOpacity onPress={() => handleDelete(item.id)}>
+                    <Text style={styles.listMenuItemDelete}>Delete</Text>
+                  </TouchableOpacity>
+                </View>
+              )}
+            </View>
+          </View>
+        )}
+        ListEmptyComponent={<Text>No lists found for this board</Text>}
+      />
+    </View>
+  );
 }

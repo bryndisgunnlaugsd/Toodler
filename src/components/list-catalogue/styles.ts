@@ -1,37 +1,99 @@
-// src/views/lists/styles.ts (or styles.tsx)
 import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 20,
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-    },
-    listItem: {
-        padding: 15,
-        marginVertical: 8,
-        borderRadius: 8,
-        borderWidth: 1,
-        borderColor: '#ddd',
-        height: 70
-    },
-    listName: {
-        fontSize: 18,
-        fontWeight: '600',
-    },
-    button: {
-        backgroundColor: '#007AFF',
-        padding: 15,
-        borderRadius: 8,
-        marginVertical: 10,
-    },
-    buttonText: {
-        color: 'white',
-        textAlign: 'center',
-        fontSize: 16,
-    },
+  container: {
+    flex: 1,
+    paddingHorizontal: 16,
+    paddingTop: 20,
+  },
+
+  /* --------------------------------------------- */
+  /*  LIST CARD                                    */
+  /* --------------------------------------------- */
+
+  listItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+
+    backgroundColor: "#ffffff00", // actual color applied dynamically
+    borderRadius: 18,
+
+    paddingHorizontal: 16,
+    paddingVertical: 18,
+    marginBottom: 20,
+
+    shadowColor: "#000",
+    shadowOpacity: 0.10,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 6,
+    elevation: 4,
+
+    position: "relative",
+    zIndex: 10,
+  },
+
+  // Content on the left (the name)
+  listInfo: {
+    flex: 1,
+  },
+
+  listName: {
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#000",
+  },
+
+  /* --------------------------------------------- */
+  /*  THREE DOTS MENU                              */
+  /* --------------------------------------------- */
+
+  listMenuWrapper: {
+    position: "relative",
+    paddingLeft: 10,
+  },
+
+  listMenuButton: {
+    padding: 6,
+  },
+
+  listMenuIcon: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#000",
+  },
+
+  listMenu: {
+    position: "absolute",
+    top: 28,
+    right: 0,
+
+    backgroundColor: "#fff",
+    borderRadius: 12,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+
+    width: 150,
+
+    shadowColor: "#000",
+    shadowOpacity: 0.20,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 8,
+    elevation: 6,
+
+    zIndex: 50,
+  },
+
+  listMenuItem: {
+    fontSize: 15,
+    paddingVertical: 6,
+    color: "#000",
+  },
+
+  listMenuItemDelete: {
+    fontSize: 15,
+    paddingVertical: 6,
+    color: "#d11",
+    fontWeight: "600",
+  },
 });

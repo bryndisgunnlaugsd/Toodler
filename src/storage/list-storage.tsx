@@ -15,23 +15,37 @@ useEffect(() => {
 
 const addList = (boardId: number, name: string, color: string) => {
     const newList: List = {
-      id: Date.now(),       // unique ID
-      boardId,
-      name,
-      color,
+        id: Date.now(),       // unique ID
+        boardId,
+        name,
+        color,
     };
     setLists(prev => [...prev, newList]);
-  };
+    
+    };
 
-  return (
-    <ListStore.Provider value={{ lists, addList }}>
-      {children}
+    const deleteList = (id: number) => {
+        setLists((prev) => prev.filter((l) => l.id !== id));
+    };
+
+    const updateList = (
+        id: number,
+        updates: { name?: string; color?: string }
+    ) => {
+        setLists((prev) =>
+            prev.map((l) => (l.id === id ? { ...l, ...updates } : l))
+        );
+    };
+
+    return (
+    <ListStore.Provider value={{ lists, addList, deleteList, updateList }}>
+        {children}
     </ListStore.Provider>
-  );
+    );
 }
 
 export function useListStore() {
-  const ctx = useContext(ListStore);
-  if (!ctx) throw new Error("useListStore must be inside ListStoreProvider");
-  return ctx;
+    const ctx = useContext(ListStore);
+    if (!ctx) throw new Error("useListStore must be inside ListStoreProvider");
+return ctx;
 }
