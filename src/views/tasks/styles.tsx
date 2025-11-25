@@ -31,8 +31,11 @@ export default StyleSheet.create({
 
     buttonText:{
         color: 'white'
-    }
+    },
 
-
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,},
 
 })

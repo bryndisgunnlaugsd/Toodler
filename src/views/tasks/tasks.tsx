@@ -1,24 +1,27 @@
-import React, {useState} from 'react';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { TaskList } from "@/src/components/task-list/task-list";
-import { useRouter } from "expo-router";
-import { View } from "react-native";
 import styles from "./styles";
+import { useRoute } from '@react-navigation/native';
+import { useLocalSearchParams } from "expo-router";
+import { View, Text } from "react-native";
+import { List } from "@/src/types/list"
+import data from "../../data/data.json"
 
 export function Tasks() {
-    const [tasks, setTasks] = useState<Task[]>(tasksData);
+    const router = useRoute();
+    const { listId } = useLocalSearchParams();
 
-    const handleToggleTask = (id: number) => {
-        setTasks(prev =>
-            prev.map(task =>
-                task.id === id ? { ...task, isFinished: !task.isFinished} : task
-            )
-        );
-    };
+    const currentList: List | undefined = data.lists.find(
+        (list) => list.id === Number(listId)
+    );
 
-    return (
-        <SafeAreaView style={styles.container}>
-            <TaskList tasks={tasks} onToggleTask={handleToggleTask} />
-        </SafeAreaView>
+    return(
+
+        <View style={styles.container}>
+            <Text style={styles.title}>
+                {currentList?.name}
+            </Text>
+
+            <TaskList/>
+        </View>
     )
 }
