@@ -34,6 +34,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     gap: 10,
     marginTop: 10,
+    justifyContent: "center"
   },
   colorSwatch: {
     width: 44,
