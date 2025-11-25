@@ -4,10 +4,7 @@ import { primaryBlue, gray700, primaryRed, primaryGreen, primaryPurple } from '@
 export default StyleSheet.create({
     container: {
         flex: 1,
-        padding: 20,
-        backgroundColor: primaryPurple,
-        alignItems: "center",
-        justifyContent: "space-evenly"
+        padding: 16
     },
 
     image: {
@@ -34,8 +31,14 @@ export default StyleSheet.create({
 
     buttonText:{
         color: 'white'
-    }
+    },
 
-
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginBottom: 20,},
+    addButton: {
+    fontSize: 28,
+    },
 
 })
