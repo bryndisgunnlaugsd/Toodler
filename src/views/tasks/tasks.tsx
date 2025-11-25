@@ -1,13 +1,12 @@
 import { TaskList } from "@/src/components/task-list/task-list";
 import styles from "./styles";
-import { useRoute } from '@react-navigation/native';
-import { useLocalSearchParams } from "expo-router";
-import { View, Text } from "react-native";
+import { useLocalSearchParams, useRouter } from "expo-router";
+import { View, Text, TouchableOpacity } from "react-native";
 import { List } from "@/src/types/list"
 import data from "../../data/data.json"
 
 export function Tasks() {
-    const router = useRoute();
+    const router = useRouter();
     const { listId } = useLocalSearchParams();
 
     const currentList: List | undefined = data.lists.find(
@@ -20,7 +19,16 @@ export function Tasks() {
             <Text style={styles.title}>
                 {currentList?.name}
             </Text>
-
+            <TouchableOpacity
+                onPress={() =>
+                    router.push({
+                    pathname: "/create-task",
+                    params: { listId: listId?.toString() },
+                    })
+                }
+                >
+          <Text style={styles.addButton}>＋</Text>
+        </TouchableOpacity>
             <TaskList/>
         </View>
     )

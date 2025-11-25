@@ -2,29 +2,54 @@ import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    paddingHorizontal: 20,
+    paddingTop: 10,
   },
+
   row: {
     flexDirection: "row",
-    alignItems: "center",
-    paddingVertical: 8,
-    paddingHorizontal: 16,
+    alignItems: "flex-start",
+    backgroundColor: "#fff",
+    paddingVertical: 14,
+    paddingHorizontal: 12,
+    borderRadius: 12,
+    marginBottom: 12,
+    shadowColor: "#000",
+    shadowOpacity: 0.05,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 2 },
   },
+
   textContainer: {
-    marginLeft: 12,
+    marginLeft: 14,
     flex: 1,
   },
+
   taskTitle: {
-    fontSize: 16,
-    fontWeight: "500",
+    fontSize: 18,
+    fontWeight: "600",
+    color: "#222",
   },
+
   taskTitleDone: {
     textDecorationLine: "line-through",
-    opacity: 0.5,
+    color: "#999",
   },
+
   taskDescription: {
-    fontSize: 12,
+    fontSize: 14,
     color: "#666",
-    marginTop: 2,
+    marginTop: 3,
+    lineHeight: 20,
+  },
+  textPressable: {
+   marginLeft: 14,
+   flex: 1,
+  },
+  emptyText: {
+    textAlign: "center",
+    marginTop: 20,
+    fontSize: 16,
+    color: "#888",
   },
 });
