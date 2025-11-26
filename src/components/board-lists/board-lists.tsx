@@ -49,14 +49,6 @@ export function BoardList() {
             )}
             ListEmptyComponent={<Text>No lists found for this board</Text>}
         />
-            <Pressable
-                style={styles.plusbutton}
-                onPress={() => {
-                    router.push("/createboard");
-                }}
-            >
-                <Text style={styles.plusbuttontext}>+</Text>
-            </Pressable>
         </View>
     );
 }
