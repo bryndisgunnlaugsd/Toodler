@@ -3,11 +3,11 @@ import { FlatList, View, Pressable, Text } from "react-native";
 import { Board } from "@/src/types/board";
 import { BoardThumbnail } from "./image-thumbnail/board-thumbnail";
 import { useRouter } from "expo-router";
-import { UseBoardStore } from "@/src/storage/board-storage";
+import { useBoardStore } from "@/src/storage/board-storage";
 import { useState } from "react";
 
 export function BoardList() {
-    const { boards, deleteBoard } = UseBoardStore();
+    const { boards, deleteBoard } = useBoardStore();
     const router = useRouter();
 
     const [openMenuId, setOpenMenuId] = useState<number | null>(null);

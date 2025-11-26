@@ -47,7 +47,7 @@ useEffect(() => {
     );
 }
 
-export function UseBoardStore() {
+export function useBoardStore() {
     const ctx = useContext(boardStore);
     if (!ctx) throw new Error("useBoardStore must be inside BoardStoreProvider");
 

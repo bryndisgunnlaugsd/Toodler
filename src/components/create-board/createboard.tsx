@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import styles from "@/src/views/createboard/styles";
-import { UseBoardStore } from "@/src/storage/board-storage";
+import { useBoardStore } from "@/src/storage/board-storage";
 
 import { CameraComponent } from "@/src/components/image/camera";
 import { ImagePickerButton } from "@/src/components/image/imagepicker";
@@ -10,7 +10,7 @@ import { PhotoPreview } from "@/src/components/image/photopreview";
 
 export function CreateBoardComp() {
   const router = useRouter();
-  const { addBoard } = UseBoardStore();
+  const { addBoard } = useBoardStore();
 
   const [name, setName] = useState("");
   const [description, setDesc] = useState("");
