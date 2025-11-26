@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import styles from "@/src/views/createboard/styles";
-import { useBoardStore } from "@/src/storage/board-storage";
+import { UseBoardStore } from "@/src/storage/board-storage";
 
 import { CameraComponent } from "@/src/components/image/camera";
 import { ImagePickerButton } from "@/src/components/image/imagepicker";
@@ -14,7 +14,7 @@ type EditBoardCompProps = {
 
 export function EditBoardComp({ boardId }: EditBoardCompProps) {
   const router = useRouter();
-  const { boards, updateBoard } = useBoardStore();
+  const { boards, updateBoard } = UseBoardStore();
 
   const existing = boards.find((b) => b.id === boardId);
 
