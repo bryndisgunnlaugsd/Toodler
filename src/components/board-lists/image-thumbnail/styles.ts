@@ -52,13 +52,26 @@ export default StyleSheet.create({
     },
 
     menuButton: {
-        padding: 6,
+    width: 32,
+    height: 32,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    justifyContent: "center",
+    alignItems: "center",
+
+    shadowColor: "#000",
+    shadowOpacity: 0.15,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 6,
+    elevation: 6,
     },
 
     menuIcon: {
-        fontSize: 30,
+        fontSize: 18,
         fontWeight: "bold",
-        color: "#FFFFFF",
+        color: "#000000",
+        justifyContent:"center",
+        alignItems:"center"
     },
 
     menuDropdown: {

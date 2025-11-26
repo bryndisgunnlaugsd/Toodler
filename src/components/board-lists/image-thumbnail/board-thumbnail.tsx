@@ -29,7 +29,7 @@ export function BoardThumbnail({ board, onPress, menuOpen, onToggleMenu, onEdit,
                 {/* Menu wrapper */}
                 <View style={styles.menuWrapper}>
                 <TouchableOpacity onPress={onToggleMenu} style={styles.menuButton}>
-                    <Text style={styles.menuIcon}>⋮</Text>
+                    <Text style={styles.menuIcon}>≡</Text>
                 </TouchableOpacity>
 
                 {menuOpen && (
