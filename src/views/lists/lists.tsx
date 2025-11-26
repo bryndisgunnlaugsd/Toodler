@@ -28,8 +28,8 @@ export function Lists() {
                     })
                 }
                 >
-          <Text style={styles.addButton}>＋</Text>
-        </TouchableOpacity>
+                <Text style={styles.addButton}>＋</Text>
+            </TouchableOpacity>
 
         <ListCatalogue/>
 

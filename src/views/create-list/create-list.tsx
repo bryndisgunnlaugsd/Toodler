@@ -1,111 +1,25 @@
-import { useLocalSearchParams, useRouter } from "expo-router";
-import React, { useEffect, useState } from "react";
-import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import styles from "./styles";
-import { useListStore } from "@/src/storage/list-storage";
-
-// Color options
-const COLORS = [
-  "#FBD2D7",
-  "#F8D9B6",
-  "#EAF5B0",
-  "#CFF3FF",
-  "#D8D4FF",
-  "#F5D8FF",
-];
+// src/views/create-list/create-list.tsx
+import { useLocalSearchParams } from "expo-router";
+import React from "react";
+import { CreateListComp } from "@/src/components/create-list/create-list-comp";
+//import { EditListComp } from "@/src/components/edit-list-comp/edit-list-comp";
 
 export function CreateList() {
-  const router = useRouter();
   const { boardId, listId } = useLocalSearchParams();
-
-  const { lists, addList, updateList } = useListStore();
 
   const editing = !!listId;
 
-  const existingList = editing
-    ? lists.find((l) => l.id === Number(listId))
-    : undefined;
-
-  const [name, setName] = useState(existingList?.name ?? "");
-  const [color, setColor] = useState<string>(existingList?.color ?? COLORS[0]);
-
-  // if lists load later, sync when existingList appears
-  useEffect(() => {
-    if (editing && existingList) {
-      setName(existingList.name);
-      setColor(existingList.color);
-    }
-  }, [editing, existingList]);
-
-  const handleSave = () => {
-    const trimmed = name.trim();
-    if (!trimmed) return;
-
-    if (editing && listId) {
-      // EDIT MODE
-      updateList(Number(listId), { name: trimmed, color });
-    } else if (boardId) {
-      // CREATE MODE
-      addList(Number(boardId), trimmed, color);
-    }
-
-    router.back();
-  };
+  if (editing) {
+    return (
+      <EditListComp
+        listId={Number(listId)}
+      />
+    );
+  }
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>{editing ? "Edit List" : "Create List"}</Text>
-
-      <View style={styles.section}>
-        <Text style={styles.label}>List Name</Text>
-        <TextInput
-          value={name}
-          onChangeText={setName}
-          placeholder="Enter list name"
-          placeholderTextColor="#999"
-          style={styles.input}
-        />
-      </View>
-
-      <View style={styles.section}>
-        <Text style={styles.label}>List Color</Text>
-        <View style={styles.colorsRow}>
-          {COLORS.map((c) => {
-            const selected = c === color;
-            return (
-              <TouchableOpacity
-                key={c}
-                onPress={() => setColor(c)}
-                style={[
-                  styles.colorSwatch,
-                  { backgroundColor: c },
-                  selected && styles.colorSwatchSelected,
-                ]}
-              >
-                {selected && <Text style={styles.check}>✓</Text>}
-              </TouchableOpacity>
-            );
-          })}
-        </View>
-      </View>
-
-      <View style={styles.buttonsRow}>
-        <TouchableOpacity
-          style={[styles.button, styles.buttonLight]}
-          onPress={() => router.back()}
-        >
-          <Text style={styles.buttonTextDark}>Cancel</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={[styles.button, styles.buttonGrey]}
-          onPress={handleSave}
-        >
-          <Text style={styles.buttonTextDark}>
-            {editing ? "Save" : "Create"}
-          </Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    <CreateListComp
+      boardId={boardId ? Number(boardId) : undefined}
+    />
   );
 }
