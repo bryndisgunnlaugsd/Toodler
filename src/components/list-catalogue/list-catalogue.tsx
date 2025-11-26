@@ -2,13 +2,13 @@ import React, { useState } from "react";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
-import { useListStore } from "@/src/storage/list-storage";
+import { UseListStore } from "@/src/storage/list-storage";
 
 export function ListCatalogue() {
     const router = useRouter();
     const { boardId } = useLocalSearchParams();
 
-    const { lists, deleteList } = useListStore();
+    const { lists, deleteList } = UseListStore();
 
     const [openMenuId, setOpenMenuId] = useState<number | null>(null);
 

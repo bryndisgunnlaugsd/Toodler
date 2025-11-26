@@ -1,15 +1,15 @@
-import { FlatList, View, Text, Pressable, TouchableOpacity } from "react-native";
-import styles from "../task-list/styles";
+import React, { useState } from "react";
+import { FlatList, View, Text } from "react-native";
+import styles from "./styles";
 import { Task } from "@/src/types/task";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import Checkbox from "expo-checkbox";
-import { useTaskStore } from "@/src/storage/task-storage";
-import React, { useState } from "react";
+import { UseTaskStore } from "@/src/storage/task-storage";
+import { TaskItem } from "./task-item"; 
 
 export function TaskList() {
   const router = useRouter();
   const { listId } = useLocalSearchParams();
-  const { tasks, updateTask, deleteTask } = useTaskStore();
+  const { tasks, updateTask, deleteTask } = UseTaskStore();
 
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
 
@@ -19,8 +19,8 @@ export function TaskList() {
     (task) => task.listId === numericListId
   );
 
-  const toggleTask = (taskId: number, currentValue: boolean) => {
-    updateTask(taskId, { isFinished: !currentValue });
+  const toggleTaskDone = (task: Task) => {
+    updateTask(task.id, { isFinished: !task.isFinished });
   };
 
   const handleEdit = (task: Task) => {
@@ -40,64 +40,19 @@ export function TaskList() {
   };
 
   const renderItem = ({ item }: { item: Task }) => {
-    const handleToggle = () => toggleTask(item.id, item.isFinished);
     const isMenuOpen = openMenuId === item.id;
 
     return (
-      <View
-        style={[
-          styles.row,
-          isMenuOpen && styles.taskRowActive, // optional raised style
-        ]}
-      >
-        {/* checkbox + text */}
-        <Checkbox
-          value={item.isFinished}
-          onValueChange={handleToggle}
-        />
-
-        <Pressable
-          style={styles.textPressable}
-          onPress={handleToggle}
-        >
-          <Text
-            style={[
-              styles.taskTitle,
-              item.isFinished && styles.taskTitleDone,
-            ]}
-          >
-            {item.name}
-          </Text>
-
-          {item.description ? (
-            <Text style={styles.taskDescription}>{item.description}</Text>
-          ) : null}
-        </Pressable>
-
-        {/* 3-dots task menu */}
-        <View style={styles.taskMenuWrapper}>
-          <TouchableOpacity
-            style={styles.taskMenuButton}
-            onPress={() =>
-              setOpenMenuId((prev) => (prev === item.id ? null : item.id))
-            }
-          >
-            <Text style={styles.taskMenuIcon}>⋮</Text>
-          </TouchableOpacity>
-
-          {isMenuOpen && (
-            <View style={styles.taskMenu}>
-              <TouchableOpacity onPress={() => handleEdit(item)}>
-                <Text style={styles.taskMenuItem}>Edit task</Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity onPress={() => handleDelete(item.id)}>
-                <Text style={styles.taskMenuItemDelete}>Delete task</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        </View>
-      </View>
+      <TaskItem
+        task={item}
+        isMenuOpen={isMenuOpen}
+        onToggleDone={() => toggleTaskDone(item)}
+        onToggleMenu={() =>
+          setOpenMenuId((prev) => (prev === item.id ? null : item.id))
+        }
+        onEdit={() => handleEdit(item)}
+        onDelete={() => handleDelete(item.id)}
+      />
     );
   };
 
@@ -105,7 +60,7 @@ export function TaskList() {
     <View style={styles.container}>
       <FlatList
         data={filteredTasks}
-        extraData={tasks}
+        extraData={{ tasks, openMenuId }}
         keyExtractor={(item) => item.id.toString()}
         renderItem={renderItem}
         ListEmptyComponent={
