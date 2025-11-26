@@ -32,14 +32,14 @@ export default function RootLayout() {
       <Stack.Screen 
       name="boards"
       options={{
-        
+        title: "",
         headerBackVisible: false,
-        // headerTitle: () => (
-        //   <Image
-        //     source={require("@/assets/images/toodler_logo.png")}
-        //     style={{ width: 200, height: 200 }}
-        //   />
-        // ),
+        headerTitle: () => (
+          <Image
+            source={require("@/assets/images/toodler_logo.png")}
+            style={{width: 184, height: 40}}
+          />
+        ),
         headerTitleAlign: "center",
         
       }}/>
@@ -48,6 +48,7 @@ export default function RootLayout() {
       name="lists"
       options={{
         title: "Lists",
+        headerBackTitle: "",
       }}/>
 
       <Stack.Screen 
@@ -59,13 +60,13 @@ export default function RootLayout() {
       <Stack.Screen
       name="create-list"
       options={{ 
-        title: "Create List" 
+        title: "" 
       }}/>
 
       <Stack.Screen
       name="create-task"
       options={{ 
-        title: "Create Task" 
+        title: "" 
       }}/>
 
       <Stack.Screen
