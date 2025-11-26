@@ -14,25 +14,25 @@ export function Lists() {
   );
 
     return(
-        
         <View style={styles.container}>
-            <Text style={styles.title}>
-                {currentBoard?.name}
-            </Text>
-            
-            <TouchableOpacity
-                onPress={() =>
-                    router.push({
-                    pathname: "/create-list",
-                    params: { boardId: boardId?.toString() },
-                    })
-                }
+            <View style={styles.header}>
+                <Text style={styles.title}>
+                    {currentBoard?.name}
+                </Text>
+                
+                <TouchableOpacity
+                    style={styles.addButtonContainer}
+                    onPress={() =>
+                        router.push({
+                        pathname: "/create-list",
+                        params: { boardId: boardId?.toString() },
+                        })
+                    }
                 >
                 <Text style={styles.addButton}>＋</Text>
             </TouchableOpacity>
 
         <ListCatalogue/>
-
 
         </View>
     )
