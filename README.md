@@ -1,16 +1,42 @@
 # Welcome to our Toodler app 👋
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A task management app built with React Native and Expo, featuring 3-tier organizational structure (Boards -> Lists -> Tasks) with custom visual styling and great navigation.
 
-## Get started
+## Features
+- **Boards**: Organize your tasks into different boards with custom images
+- **Lists**:
+- **Tasks**:
 
-1. Install dependencies
+
+
+## Folder Structure
+
+## Gettin started
+
+### Pre-conditions
+
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone <your-repository-url>
+   cd Toodler
+   ```
+
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
+
+
+
 
    ```bash
    npm install
    ```
 
-2. Start the app
+3. Start the app
 
    ```bash
    npx expo start
