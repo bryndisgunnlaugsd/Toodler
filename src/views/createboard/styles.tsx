@@ -3,9 +3,16 @@ import { StyleSheet } from "react-native";
 export default StyleSheet.create({
     container: {
         color: "black",
-        flex:1,
+        flexGrow: 1,
         paddingHorizontal:28,
         paddingTop:40,
+        backgroundColor: "white"
+    },
+
+    iconLayout: {
+        flexDirection: "row",
+        alignItems: "center",
+        marginBottom: 10,
     },
 
     title: {
@@ -39,6 +46,7 @@ export default StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     marginTop: 40,
+    marginBottom: 60,
     },
     button: {
         flex: 1,
@@ -66,58 +74,67 @@ export default StyleSheet.create({
     },
 
     cameraContainer: {
-  width: "100%",
-  height: 350,
-  marginTop: 20,
-  borderRadius: 12,
-  overflow: "hidden",
-  position: "relative",
-},
+      width: "100%",
+      height: 350,
+      marginTop: 20,
+      borderRadius: 12,
+      overflow: "hidden",
+      position: "relative",
+  },
+  photoInputText: {
+    fontSize: 16,
+    fontWeight: "600",
+    color: "#000",
+    marginLeft: 10,
+    },
 
-camera: {
-  flex: 1,
-},
+  camera: {
+      flex: 1,
+  },
 
-closeCamera: {
-  position: "absolute",
-  top: 10,
-  right: 10,
-  backgroundColor: "rgba(0,0,0,0.6)",
-  padding: 8,
-  borderRadius: 20,
-},
+  closeCamera: {
+      position: "absolute",
+      top: 10,
+      right: 10,
+      backgroundColor: "rgba(0,0,0,0.6)",
+      padding: 8,
+      borderRadius: 20,
+  },
 
-cameraIcon: {
-  fontSize: 24,
-  marginVertical: 10,
-},
+  cameraIcon: {
+    fontSize: 24,
+    marginVertical: 10,
+    marginRight:15,
+  },
 
-shutterButton: {
-  position: "absolute",
-  bottom: 20,
-  alignSelf: "center",
-  backgroundColor: "white",
-  width: 60,
-  height: 60,
-  borderRadius: 30,
-  justifyContent: "center",
-  alignItems: "center",
-},
+  shutterButton: {
+    position: "absolute",
+    bottom: 20,
+    alignSelf: "center",
+    backgroundColor: "white",
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    justifyContent: "center",
+    alignItems: "center",
+  },
 
-photoPreviewContainer: {
-  marginTop: 20,
-  alignItems: "center",
-},
+  photoPreviewContainer: {
+    marginTop: 20,
+    alignItems: "center",
+  },
 
-photoPreview: {
-  width: 200,
-  height: 200,
-  borderRadius: 12,
-  marginTop: 10,
-},
+  photoPreview: {
+    width: 200,
+    height: 200,
+    borderRadius: 12,
+    marginTop: 10,
+  },
 
-photoLibrary: {
-
-}
+  photoLibrary: {
+    fontSize: 24,
+    marginVertical: 10,
+    marginRight:15,
+  }
 
 });

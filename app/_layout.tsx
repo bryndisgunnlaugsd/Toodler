@@ -71,7 +71,7 @@ export default function RootLayout() {
       <Stack.Screen
       name="create-board"
       options={{
-        title: "Create Board",
+        title: "",
       }}
     />
 
