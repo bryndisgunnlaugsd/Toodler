@@ -1,8 +1,8 @@
-import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import React, { useState } from "react";
+import { TouchableOpacity, Text, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import styles from "../../views/createboard/styles";
 import * as Linking from "expo-linking";
+import styles from "../../views/createboard/styles";
 
 interface PhotoResult {
   uri: string;
@@ -15,25 +15,21 @@ interface ImagePickerButtonProps {
 }
 
 export function ImagePickerButton({ onPicked }: ImagePickerButtonProps) {
-  const pickImage = async () => {
-    const { status, canAskAgain } =
-      await ImagePicker.requestMediaLibraryPermissionsAsync();
+  const [permission, setPermission] =
+    useState<null | ImagePicker.PermissionResponse>(null);
 
-    if (status !== "granted") {
-      if (canAskAgain) {
-        // show OS permission popup
-        const req = await ImagePicker.requestMediaLibraryPermissionsAsync();
+  const requestPermission = async () => {
+    const res = await ImagePicker.requestMediaLibraryPermissionsAsync();
+    setPermission(res);
+    return res;
+  };
 
-        if (req.status !== "granted") {
-          alert("Permission denied.");
-          return;
-        }
-      } else {
-        // cannot ask again → go to settings
-        alert("Please enable photo library permission in settings.");
-        Linking.openSettings();
-        return;
-      }
+  const handlePress = async () => {
+    let perm = permission ?? (await ImagePicker.getMediaLibraryPermissionsAsync());
+    setPermission(perm);
+
+    if (!perm.granted) {
+      return; 
     }
 
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -45,7 +41,6 @@ export function ImagePickerButton({ onPicked }: ImagePickerButtonProps) {
     if (result.canceled) return;
 
     const asset = result.assets[0];
-
     onPicked({
       uri: asset.uri,
       width: asset.width,
@@ -53,8 +48,26 @@ export function ImagePickerButton({ onPicked }: ImagePickerButtonProps) {
     });
   };
 
+  if (permission && !permission.granted) {
+    return (
+      <View>
+        <Text style={{ marginBottom: 10 }}>Photo access required</Text>
+
+        {permission.canAskAgain ? (
+          <TouchableOpacity onPress={requestPermission}>
+            <Text style={{ color: "blue" }}>Grant Permission</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity onPress={() => Linking.openSettings()}>
+            <Text style={{ color: "blue" }}>Open Settings</Text>
+          </TouchableOpacity>
+        )}
+      </View>
+    );
+  }
+
   return (
-    <TouchableOpacity onPress={pickImage}>
+    <TouchableOpacity onPress={handlePress}>
       <Text style={styles.photoLibrary}>🖼️ Choose from library</Text>
     </TouchableOpacity>
   );

@@ -28,16 +28,29 @@ export function CameraComponent({ onPictureTaken, onClose }: CameraComponentProp
 
   if (!permission.granted) {
     return (
-      <View>
-        <Text>Camera permission required</Text>
-        {permission?.canAskAgain ? (
-        <TouchableOpacity onPress={requestPermission}>
-          <Text>Grant Permission</Text>
-        </TouchableOpacity>
+      <View style={{ padding: 20 }}>
+        <Text style={{ fontSize: 16, marginBottom: 10 }}>
+          Camera access is required.
+        </Text>
+
+        {permission.canAskAgain ? (
+          <TouchableOpacity
+            style={{ padding: 12 }}
+            onPress={requestPermission}
+          >
+            <Text style={{ fontSize: 16, color: "blue" }}>
+              Grant Permission
+            </Text>
+          </TouchableOpacity>
         ) : (
-        <TouchableOpacity onPress={() => Linking.openSettings()}>
-          <Text>Open Settings to Enable Camera</Text>
-        </TouchableOpacity>
+          <TouchableOpacity
+            style={{ padding: 12 }}
+            onPress={() => Linking.openSettings()}
+          >
+            <Text style={{ fontSize: 16, color: "blue" }}>
+              Open Settings
+            </Text>
+          </TouchableOpacity>
         )}
       </View>
     );
