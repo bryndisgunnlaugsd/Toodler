@@ -72,23 +72,42 @@ export default StyleSheet.create({
     color: "#111111",
   },
 
-  listPicker: {
+  listPickerButton: {
     marginTop: 8,
-    backgroundColor: "#FFF",
-    borderRadius: 12,
-    paddingVertical: 4,
-    paddingHorizontal: 8,
+    borderRadius: 16,
+    backgroundColor: "#f3f3f5",
+    paddingVertical: 12,
+    paddingHorizontal: 16,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  listPickerButtonText: {
+    fontSize: 16,
+    textAlign: "center",
+    color: "#111",
+  },
+  listPickerList: {
+    backgroundColor: "#fff",
+    borderRadius: 16,
+    overflow: "hidden",
     shadowColor: "#000",
     shadowOpacity: 0.12,
     shadowOffset: { width: 0, height: 2 },
     shadowRadius: 6,
     elevation: 2,
   },
+  listPicker: {
+    marginTop: 8,
+  },
   listPickerItem: {
-    paddingVertical: 6,
+    paddingVertical: 10,
+    paddingHorizontal: 16,
+    borderBottomWidth: 1,
+    borderBottomColor: "#eee",
   },
   listPickerItemText: {
-    fontSize: 14,
+    fontSize: 16,
+    textAlign: "center",
     color: "#111",
   },
   listPickerItemTextActive: {

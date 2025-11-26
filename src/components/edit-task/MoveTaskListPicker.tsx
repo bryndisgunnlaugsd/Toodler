@@ -23,34 +23,40 @@ export function MoveTaskListPicker({
     <View style={styles.formBlock}>
       <Text style={styles.label}>Move to list</Text>
 
+      {/* “input” pill */}
       <TouchableOpacity
-        style={styles.input}
+        style={styles.listPickerButton}
         onPress={() => setOpen((prev) => !prev)}
       >
-        <Text>{selected ? selected.name : "Choose list"}</Text>
+        <Text style={styles.listPickerButtonText}>
+          {selected ? selected.name : "Choose list"}
+        </Text>
       </TouchableOpacity>
 
       {open && (
         <View style={styles.listPicker}>
-          {lists.map((l) => (
-            <TouchableOpacity
-              key={l.id}
-              style={styles.listPickerItem}
-              onPress={() => {
-                onSelect(l.id);
-                setOpen(false);
-              }}
-            >
-              <Text
-                style={[
-                  styles.listPickerItemText,
-                  l.id === selectedListId && styles.listPickerItemTextActive,
-                ]}
+          <View style={styles.listPickerList}>
+            {lists.map((l) => (
+              <TouchableOpacity
+                key={l.id}
+                style={styles.listPickerItem}
+                onPress={() => {
+                  onSelect(l.id);
+                  setOpen(false);
+                }}
               >
-                {l.name}
-              </Text>
-            </TouchableOpacity>
-          ))}
+                <Text
+                  style={[
+                    styles.listPickerItemText,
+                    l.id === selectedListId &&
+                      styles.listPickerItemTextActive,
+                  ]}
+                >
+                  {l.name}
+                </Text>
+              </TouchableOpacity>
+            ))}
+          </View>
         </View>
       )}
     </View>
