@@ -1,9 +1,9 @@
 //COMPONENT FOR CREATING A NEW LIST
+import { useListStore } from "@/src/storage/list-storage";
+import styles from "@/src/views/create-list/styles"; // reuse old existing styles
+import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useRouter } from "expo-router";
-import styles from "@/src/views/create-list/styles"; // reuse old existing styles
-import { UseListStore } from "@/src/storage/list-storage";
 
 // color options
 const colors = [
@@ -22,7 +22,7 @@ type CreateListCompProps = {
 
 export function CreateListComp({ boardId }: CreateListCompProps) {
     const router = useRouter();
-    const { addList } = UseListStore();
+    const { addList } = useListStore();
 
     const [name, setName] = useState("");
     const [color, setColor] = useState(colors[0]);

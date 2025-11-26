@@ -1,8 +1,8 @@
+import { useListStore } from "@/src/storage/list-storage";
+import styles from "@/src/views/create-list/styles";
+import { useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
-import { useRouter } from "expo-router";
-import styles from "@/src/views/create-list/styles";
-import { UseListStore } from "@/src/storage/list-storage";
 
 const colors = [
   "#FBD2D7",
@@ -19,7 +19,7 @@ type EditListCompProps = {
 
 export function EditListComp({ listId }: EditListCompProps) {
   const router = useRouter();
-  const { lists, updateList} = UseListStore();
+  const { lists, updateList} = useListStore();
 
   const existingList = lists.find((l) => l.id === listId);
 

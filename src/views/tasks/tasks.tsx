@@ -1,13 +1,13 @@
 import { TaskList } from "@/src/components/task-list/task-list";
-import styles from "./styles";
+import { useListStore } from "@/src/storage/list-storage";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { View, Text, TouchableOpacity } from "react-native";
-import { UseListStore } from "@/src/storage/list-storage";
+import { Text, TouchableOpacity, View } from "react-native";
+import styles from "./styles";
 
 export function Tasks() {
   const router = useRouter();
   const { listId } = useLocalSearchParams();
-  const { lists } = UseListStore();
+  const { lists } = useListStore();
 
   const currentList = lists.find(
     (list) => list.id === Number(listId)

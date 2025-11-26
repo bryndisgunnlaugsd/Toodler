@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
+import data from "../data/data.json";
 import { List } from "../types/list";
 import { ListStoreType } from "../types/list-storage";
-import data from "../data/data.json";
 
 const listStore = createContext<ListStoreType | null>(null);
 
@@ -44,7 +44,7 @@ const addList = (boardId: number, name: string, color: string) => {
     );
 }
 
-export function UseListStore() {
+export function useListStore() {
     const ctx = useContext(listStore);
     if (!ctx) throw new Error("useListStore must be inside ListStoreProvider");
     

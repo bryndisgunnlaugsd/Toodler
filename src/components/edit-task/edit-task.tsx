@@ -3,9 +3,13 @@ import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import styles from "./styles";
 import { useTaskStore } from "@/src/storage/task-storage";
-import { UseListStore } from "@/src/storage/list-storage";
+import { useListStore } from "@/src/storage/list-storage";
 import { List } from "@/src/types/list";
+import { useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { MoveTaskListPicker } from "./MoveTaskListPicker";
+import styles from "./styles";
 
 type EditTaskCompProps = {
   taskId: number;
@@ -13,8 +17,10 @@ type EditTaskCompProps = {
 
 export function EditTaskComp({ taskId }: EditTaskCompProps) {
   const router = useRouter();
+
   const { tasks, updateTask } = useTaskStore();
-  const { lists } = UseListStore();
+  const { lists } = useListStore();
+
 
   const task = tasks.find((t) => t.id === taskId);
 
