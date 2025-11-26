@@ -5,93 +5,93 @@ import styles from "./styles";
 import { useListStore } from "@/src/storage/list-storage";
 
 export function ListCatalogue() {
-  const router = useRouter();
-  const { boardId } = useLocalSearchParams();
+    const router = useRouter();
+    const { boardId } = useLocalSearchParams();
 
-  const { lists, deleteList } = useListStore();
+    const { lists, deleteList } = useListStore();
 
-  const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+    const [openMenuId, setOpenMenuId] = useState<number | null>(null);
 
-  const filteredLists = lists.filter(
-    (list) => list.boardId === Number(boardId)
-  );
+    const filteredLists = lists.filter(
+        (list) => list.boardId === Number(boardId)
+    );
 
-  const handleEdit = (id: number) => {
-    router.push({
-      pathname: "/create-list",
-      params: {
-        boardId: boardId?.toString(),
-        listId: id.toString(),
-      },
-    });
-    setOpenMenuId(null);
-  };
+    const handleEdit = (id: number) => {
+        router.push({
+        pathname: "/create-list",
+        params: {
+            boardId: boardId?.toString(),
+            listId: id.toString(),
+        },
+        });
+        setOpenMenuId(null);
+    };
 
-  const handleDelete = (id: number) => {
-    deleteList(id);
-    setOpenMenuId(null);
-  };
+    const handleDelete = (id: number) => {
+        deleteList(id);
+        setOpenMenuId(null);
+    };
 
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={filteredLists}
-        keyExtractor={(item) => item.id.toString()}
-        removeClippedSubviews={false}
-        renderItem={({ item }) => {
-          const isMenuOpen = openMenuId === item.id;
+    return (
+        <View style={styles.container}>
+        <FlatList
+            data={filteredLists}
+            keyExtractor={(item) => item.id.toString()}
+            removeClippedSubviews={false}
+            renderItem={({ item }) => {
+            const isMenuOpen = openMenuId === item.id;
 
-          return (
-            <View
-              style={[
-                styles.listItem,
-                { backgroundColor: item.color },
-                isMenuOpen && styles.listItemActive, // 👈 raise this card
-              ]}
-            >
-              {/* main clickable area: open tasks */}
-              <TouchableOpacity
-                style={styles.listInfo}
-                onPress={() =>
-                  router.push({
-                    pathname: "/tasks",
-                    params: { listId: item.id.toString() },
-                  })
-                }
-              >
-                <Text style={styles.listName}>{item.name}</Text>
-              </TouchableOpacity>
-
-              {/* 3-dots menu */}
-              <View style={styles.listMenuWrapper}>
-                <TouchableOpacity
-                  style={styles.listMenuButton}
-                  onPress={() =>
-                    setOpenMenuId((prev) =>
-                      prev === item.id ? null : item.id
-                    )
-                  }
-                >
-                  <Text style={styles.listMenuIcon}>⋮</Text>
-                </TouchableOpacity>
-
-                {isMenuOpen && (
-                  <View style={styles.listMenu}>
-                    <TouchableOpacity onPress={() => handleEdit(item.id)}>
-                      <Text style={styles.listMenuItem}>Edit</Text>
+            return (
+                <View
+                    style={[
+                        styles.listItem,
+                        { backgroundColor: item.color },
+                        isMenuOpen && styles.listItemActive, // 👈 raise this card
+                    ]}
+                    >
+                    {/* main clickable area: open tasks */}
+                    <TouchableOpacity
+                        style={styles.listInfo}
+                        onPress={() =>
+                        router.push({
+                            pathname: "/tasks",
+                            params: { listId: item.id.toString() },
+                        })
+                        }
+                    >
+                        <Text style={styles.listName}>{item.name}</Text>
                     </TouchableOpacity>
 
-                    <TouchableOpacity onPress={() => handleDelete(item.id)}>
-                      <Text style={styles.listMenuItemDelete}>Delete</Text>
-                    </TouchableOpacity>
-                  </View>
-                )}
-              </View>
-            </View>
-          );
-        }}
-        ListEmptyComponent={<Text>No lists found for this board</Text>}
-      />
-    </View>
-  );
+                    {/* 3-dots menu */}
+                    <View style={styles.listMenuWrapper}>
+                        <TouchableOpacity
+                        style={styles.listMenuButton}
+                        onPress={() =>
+                            setOpenMenuId((prev) =>
+                            prev === item.id ? null : item.id
+                            )
+                        }
+                        >
+                        <Text style={styles.listMenuIcon}>⋮</Text>
+                        </TouchableOpacity>
+
+                        {isMenuOpen && (
+                        <View style={styles.listMenu}>
+                            <TouchableOpacity onPress={() => handleEdit(item.id)}>
+                            <Text style={styles.listMenuItem}>Edit</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity onPress={() => handleDelete(item.id)}>
+                            <Text style={styles.listMenuItemDelete}>Delete</Text>
+                            </TouchableOpacity>
+                        </View>
+                        )}
+                    </View>
+                </View>
+            );
+            }}
+            ListEmptyComponent={<Text>No lists found for this board</Text>}
+        />
+        </View>
+    );
 }

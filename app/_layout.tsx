@@ -15,7 +15,8 @@ export default function RootLayout() {
         headerShown: true,
         headerTintColor: 'black',
         headerTitleStyle: {
-          fontWeight: "bold"
+          fontWeight: "bold",
+          fontSize: 20,
         }
         
       }}>
@@ -30,6 +31,7 @@ export default function RootLayout() {
       name="boards"
       options={{
         title: "My Boards",
+        headerBackVisible: false,
       }}/>
 
       <Stack.Screen 
