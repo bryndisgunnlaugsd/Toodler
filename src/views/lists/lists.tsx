@@ -32,9 +32,9 @@ export function Lists() {
                 <Text style={styles.addButton}>＋</Text>
             </TouchableOpacity>
 
-            <ListCatalogue/>
-
             </View>
+            
+            <ListCatalogue/>
         </View>
     )
 }
