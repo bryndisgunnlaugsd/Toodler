@@ -44,5 +44,52 @@ export default StyleSheet.create({
         color: "#555",
         lineHeight: 20,
     },
+    menuWrapper: {
+        position: "absolute",
+        top: 10,
+        right: 10,
+        zIndex: 50,
+    },
 
-})
+    menuButton: {
+        padding: 6,
+    },
+
+    menuIcon: {
+        fontSize: 30,
+        fontWeight: "bold",
+        color: "#FFFFFF",
+    },
+
+    menuDropdown: {
+        position: "absolute",
+        top: 28,
+        right: 0,
+        backgroundColor: "#fff",
+        borderRadius: 12,
+        paddingVertical: 10,
+        paddingHorizontal: 16,
+        width: 150,
+        shadowColor: "#000",
+        shadowOpacity: 0.2,
+        shadowOffset: { width: 0, height: 4 },
+        shadowRadius: 8,
+        elevation: 21,
+        zIndex: 101,
+    },
+
+    menuItem: {
+        fontSize: 15,
+        paddingVertical: 6,
+        color: "#000",
+    },
+
+    menuItemDelete: {
+        fontSize: 15,
+        paddingVertical: 6,
+        color: "#d11",
+        fontWeight: "600",
+    },
+
+
+});
