@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import styles from "./styles";
-import { UseTaskStore } from "@/src/storage/task-storage";
+import { useTaskStore } from "@/src/storage/task-storage";
 import { UseListStore } from "@/src/storage/list-storage";
 import { List } from "@/src/types/list";
 import { MoveTaskListPicker } from "./MoveTaskListPicker";
@@ -13,7 +13,7 @@ type EditTaskCompProps = {
 
 export function EditTaskComp({ taskId }: EditTaskCompProps) {
   const router = useRouter();
-  const { tasks, updateTask } = UseTaskStore();
+  const { tasks, updateTask } = useTaskStore();
   const { lists } = UseListStore();
 
   const task = tasks.find((t) => t.id === taskId);
