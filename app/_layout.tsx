@@ -15,7 +15,8 @@ export default function RootLayout() {
         headerShown: true,
         headerTintColor: 'black',
         headerTitleStyle: {
-          fontWeight: "bold"
+          fontWeight: "bold",
+          fontSize: 20,
         }
         
       }}>
