@@ -29,11 +29,11 @@ export function Lists() {
                         })
                     }
                 >
-                    <Text style={styles.addButton}>+</Text>
-                </TouchableOpacity>
-            </View>
+                <Text style={styles.addButton}>＋</Text>
+            </TouchableOpacity>
 
-            <ListCatalogue/>
+        <ListCatalogue/>
+
         </View>
     )
 }

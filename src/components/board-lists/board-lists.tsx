@@ -5,27 +5,51 @@ import { Board } from "@/src/types/board";
 import { BoardThumbnail } from "./image-thumbnail/board-thumbnail";
 import { useRouter } from "expo-router";
 import { useBoardStore } from "@/src/storage/board-storage";
+import { useState } from "react";
 
 export function BoardList() {
-    const { boards } = useBoardStore();
+    const { boards, deleteBoard } = useBoardStore();
     const router = useRouter();
+
+    const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+
+    const handleEdit = (id: number) => {
+    router.push({
+        pathname: "/createboard",
+        params: { boardId: String(id) }
+    });
+    };
+
+    const handleDelete = (id: number) => {
+        deleteBoard(id);
+        setOpenMenuId(null);
+    };
+
     return (
         <View style={styles.listContainer}>
-            <FlatList<Board>
-                numColumns={1}
-                data={boards}
-                keyExtractor={(board) => board.id.toString()}
-                renderItem={({ item }) => <BoardThumbnail  
+        <FlatList<Board>
+            numColumns={1}
+            data={boards}
+            keyExtractor={(board) => board.id.toString()}
+            renderItem={({ item }) => (
+            <BoardThumbnail
                 board={item}
-                onPress={() => 
-                    router.push({
-                        pathname: "/lists",
-                        params: { boardId: String(item.id) },
+                onPress={() =>
+                router.push({
+                    pathname: "/lists",
+                    params: { boardId: String(item.id) },
                 })
-            }
-                />}
-                
+                }
+                menuOpen={openMenuId === item.id}
+                onToggleMenu={() =>
+                setOpenMenuId((prev) => (prev === item.id ? null : item.id))
+                }
+                onEdit={() => handleEdit(item.id)}
+                onDelete={() => handleDelete(item.id)}
             />
+            )}
+            ListEmptyComponent={<Text>No lists found for this board</Text>}
+        />
             <Pressable
                 style={styles.plusbutton}
                 onPress={() => {

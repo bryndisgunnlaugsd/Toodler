@@ -1,48 +1,46 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import { Task } from "../types/task"
+import React, { createContext, useContext, useState } from "react";
+import { Task } from "../types/task";
 import { TaskStoreType } from "../types/task-storage";
 import data from "../data/data.json";
 
 const TaskStore = createContext<TaskStoreType | null>(null);
 
 export function TaskStoreProvider({ children }: { children: React.ReactNode }) {
-  const [tasks, setTasks] = useState<Task[]>([]);
+  const [tasks, setTasks] = useState<Task[]>(data.tasks);
 
+  const getNextId = () =>
+    (tasks.length ? Math.max(...tasks.map((task) => task.id)) : 0) + 1;
 
-useEffect(() => {
-    setTasks(data.tasks);
-}, []);
-
-const nextId = Math.max(...data.tasks.map(task => task.id)) + 1;
-
-const AddTask = (listId: number, name: string, description: string, isFinished: false) => {
-    const NewTask: Task = {
-        id: nextId,
-        listId,
-        name,
-        description,
-        isFinished: false,
+  const addTask: TaskStoreType["addTask"] = (listId, name, description) => {
+    const newTask: Task = {
+      id: getNextId(),
+      listId,
+      name,
+      description,
+      isFinished: false,
     };
-    setTasks(prev => [...prev, NewTask]);
-};
+    setTasks((prev) => [...prev, newTask]);
+  };
 
-const DeleteTask = (id: number) => {
+  const deleteTask: TaskStoreType["deleteTask"] = (id) => {
     setTasks((prev) => prev.filter((t) => t.id !== id));
-};
+  };
 
-const UpdateTask = (
-    id: number,
-    updates: { name?: string; description?: string}
-) => {
+  const updateTask: TaskStoreType["updateTask"] = (id, updates) => {
     setTasks((prev) =>
-        prev.map((t) => (t.id === id ? {...t, ...updates} : t))
+      prev.map((t) => (t.id === id ? { ...t, ...updates } : t))
     );
-};
+  };
 
-return (
-    <TaskStore.Provider value={{tasks, AddTask, DeleteTask, UpdateTask }}>
-        
+  return (
+    <TaskStore.Provider value={{ tasks, addTask, deleteTask, updateTask }}>
+      {children}
     </TaskStore.Provider>
-    },}}
-)
+  );
+}
+
+export function useTaskStore() {
+  const ctx = useContext(TaskStore);
+  if (!ctx) throw new Error("useTaskStore must be inside TaskStoreProvider");
+  return ctx;
 }

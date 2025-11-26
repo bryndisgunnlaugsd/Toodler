@@ -2,7 +2,7 @@ import { Stack } from "expo-router";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ListStoreProvider } from "@/src/storage/list-storage";
 import { BoardStoreProvider } from "@/src/storage/board-storage";
-
+import { TaskStoreProvider } from "@/src/storage/task-storage";
 
 export default function RootLayout() {
   
@@ -10,6 +10,7 @@ export default function RootLayout() {
   <GestureHandlerRootView>
     <BoardStoreProvider> 
     <ListStoreProvider>
+    <TaskStoreProvider>
     <Stack
       screenOptions={{
         headerShown: true,
@@ -66,6 +67,7 @@ export default function RootLayout() {
     />
 
     </Stack>;
+    </TaskStoreProvider>
     </ListStoreProvider>
     </BoardStoreProvider>
   </GestureHandlerRootView>
