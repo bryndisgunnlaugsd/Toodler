@@ -3,14 +3,14 @@ import { FlatList, View, Text } from "react-native";
 import styles from "./styles";
 import { Task } from "@/src/types/task";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { UseTaskStore } from "@/src/storage/task-storage";
+import { useTaskStore } from "@/src/storage/task-storage";
 import { TaskItem } from "./task-item";
 import { Swipeable } from "react-native-gesture-handler";
 
 export function TaskList() {
   const router = useRouter();
   const { listId } = useLocalSearchParams();
-  const { tasks, updateTask, deleteTask } = UseTaskStore();
+  const { tasks, updateTask, deleteTask } = useTaskStore();
 
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
 

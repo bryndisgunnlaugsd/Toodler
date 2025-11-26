@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity } from "react-native";
 import { useRouter } from "expo-router";
 import styles from "./styles";
-import { UseTaskStore } from "@/src/storage/task-storage";
+import { useTaskStore } from "@/src/storage/task-storage";
 
 type CreateTaskCompProps = {
   listId?: number;
@@ -10,7 +10,7 @@ type CreateTaskCompProps = {
 
 export function CreateTaskComp({ listId }: CreateTaskCompProps) {
   const router = useRouter();
-  const { addTask } = UseTaskStore();
+  const { addTask } = useTaskStore();
 
   const [name, setName] = useState("");
   const [description, setDesc] = useState("");
