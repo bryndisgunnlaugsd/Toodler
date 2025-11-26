@@ -2,7 +2,7 @@
 import { useLocalSearchParams } from "expo-router";
 import React from "react";
 import { CreateListComp } from "@/src/components/create-list/create-list-comp";
-//import { EditListComp } from "@/src/components/edit-list-comp/edit-list-comp";
+import { EditListComp } from "@/src/components/edit-list/edit-list-comp";
 
 export function CreateList() {
   const { boardId, listId } = useLocalSearchParams();

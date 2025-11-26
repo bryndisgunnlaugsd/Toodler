@@ -79,4 +79,8 @@ export default StyleSheet.create({
     fontWeight: "700",
     color: "#000",
   },
+  buttonDanger: {
+    backgroundColor: "#ff6b6b",
+    marginHorizontal: 8,
+  },
 });
