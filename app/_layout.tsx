@@ -76,7 +76,7 @@ export default function RootLayout() {
       }}
     />
 
-    </Stack>;
+    </Stack>
     </TaskStoreProvider>
     </ListStoreProvider>
     </BoardStoreProvider>
