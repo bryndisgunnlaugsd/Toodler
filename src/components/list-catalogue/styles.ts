@@ -1,13 +1,13 @@
 import { StyleSheet } from "react-native";
+import { white } from '@/src/styles/colors';
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        paddingHorizontal: 16,
+        paddingHorizontal: 12,
         paddingTop: 20,
+        backgroundColor: white,
     },
-
-    /* ------------ LIST CARD ------------ */
 
     listItem: {
         flexDirection: "row",
@@ -26,12 +26,11 @@ export default StyleSheet.create({
         shadowRadius: 6,
         elevation: 4,
 
-        position: "relative", // allow absolute children
+        position: "relative", 
         zIndex: 1,
-        overflow: "visible",  // make sure menu can extend outside card
+        overflow: "visible",  
     },
 
-    // extra style applied when menu is open
     listItemActive: {
         zIndex: 100,
         elevation: 20,
@@ -46,8 +45,6 @@ export default StyleSheet.create({
         fontWeight: "600",
         color: "#000",
     },
-
-    /* ------------ THREE DOTS MENU ------------ */
 
     listMenuWrapper: {
         position: "relative",

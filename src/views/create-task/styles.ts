@@ -71,4 +71,28 @@ export default StyleSheet.create({
     fontWeight: "600",
     color: "#111111",
   },
+
+  listPicker: {
+    marginTop: 8,
+    backgroundColor: "#FFF",
+    borderRadius: 12,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    shadowColor: "#000",
+    shadowOpacity: 0.12,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
+    elevation: 2,
+  },
+  listPickerItem: {
+    paddingVertical: 6,
+  },
+  listPickerItemText: {
+    fontSize: 14,
+    color: "#111",
+  },
+  listPickerItemTextActive: {
+    fontWeight: "700",
+  },
+
 });
