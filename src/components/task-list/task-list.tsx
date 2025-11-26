@@ -4,7 +4,8 @@ import styles from "./styles";
 import { Task } from "@/src/types/task";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { UseTaskStore } from "@/src/storage/task-storage";
-import { TaskItem } from "./task-item"; 
+import { TaskItem } from "./task-item";
+import { Swipeable } from "react-native-gesture-handler";
 
 export function TaskList() {
   const router = useRouter();
@@ -39,10 +40,28 @@ export function TaskList() {
     setOpenMenuId(null);
   };
 
+  const renderRightActions = (id: number) => (
+      <View style={styles.swipeDelete}>
+        <Text style={styles.swipeDeleteText}>Delete</Text>
+      </View>
+
+  );
+
   const renderItem = ({ item }: { item: Task }) => {
     const isMenuOpen = openMenuId === item.id;
 
     return (
+      <Swipeable
+          renderRightActions={() => renderRightActions(item.id)}
+          overshootRight={true}
+          rightThreshold={60} // how far to swipe before it counts
+          onSwipeableOpen={(direction) => {
+            // swipe LEFT -> opens RIGHT actions -> direction === "right"
+            if (direction === "right") {
+              handleDelete(item.id);
+            }
+          }}
+      >
       <TaskItem
         task={item}
         isMenuOpen={isMenuOpen}
@@ -53,6 +72,7 @@ export function TaskList() {
         onEdit={() => handleEdit(item)}
         onDelete={() => handleDelete(item.id)}
       />
+      </Swipeable>
     );
   };
 
