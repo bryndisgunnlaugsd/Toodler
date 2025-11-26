@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { FlatList, View, Text } from "react-native";
 import styles from "./styles";
 import { Task } from "@/src/types/task";
@@ -6,6 +6,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useTaskStore } from "@/src/storage/task-storage";
 import { TaskItem } from "./task-item";
 import { Swipeable } from "react-native-gesture-handler";
+import { Audio } from "expo-av";
 
 export function TaskList() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export function TaskList() {
   const { tasks, updateTask, deleteTask } = useTaskStore();
 
   const [openMenuId, setOpenMenuId] = useState<number | null>(null);
+  const [completeSound, setCompleteSound] = useState<Audio.Sound | null>(null);
 
   const numericListId = Number(listId);
 
@@ -20,8 +22,38 @@ export function TaskList() {
     (task) => task.listId === numericListId
   );
 
-  const toggleTaskDone = (task: Task) => {
-    updateTask(task.id, { isFinished: !task.isFinished });
+  useEffect(() => {
+    let mounted = true;
+
+    async function loadSound() {
+      const { sound } = await Audio.Sound.createAsync(
+        require("../../../assets/sounds/pencil_check_mark_2-105940.mp3") 
+      );
+      if (mounted) setCompleteSound(sound);
+    }
+
+    loadSound();
+
+    return () => {
+      mounted = false;
+      if (completeSound) {
+        completeSound.unloadAsync();
+      }
+    };
+  }, []);
+
+  const toggleTaskDone = async (task: Task) => {
+    const newValue = !task.isFinished;
+    updateTask(task.id, { isFinished: newValue });
+
+    if (newValue && completeSound) {
+      try {
+        // replay from start each time
+        await completeSound.replayAsync();
+      } catch (e) {
+        console.warn("Could not play complete sound", e);
+      }
+    }
   };
 
   const handleEdit = (task: Task) => {
