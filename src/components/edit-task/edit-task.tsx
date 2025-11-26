@@ -1,7 +1,3 @@
-import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, TouchableOpacity } from "react-native";
-import { useRouter } from "expo-router";
-import styles from "./styles";
 import { useTaskStore } from "@/src/storage/task-storage";
 import { useListStore } from "@/src/storage/list-storage";
 import { List } from "@/src/types/list";
