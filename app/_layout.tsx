@@ -60,13 +60,13 @@ export default function RootLayout() {
       <Stack.Screen
       name="create-list"
       options={{ 
-        title: "Create List" 
+        title: "" 
       }}/>
 
       <Stack.Screen
       name="create-task"
       options={{ 
-        title: "Create Task" 
+        title: "" 
       }}/>
 
       <Stack.Screen
