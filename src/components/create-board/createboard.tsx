@@ -5,7 +5,7 @@ import styles from "@/src/views/createboard/styles";
 import { useBoardStore } from "@/src/storage/board-storage";
 
 import { CameraComponent } from "@/src/components/image/camera";
-import { ImagePickerButton } from "@/src/components/image/imagepicker";
+import { useImagePicker } from "@/src/components/image/imagepicker";
 import { PhotoPreview } from "@/src/components/image/photopreview";
 
 export function CreateBoardComp() {
@@ -16,6 +16,8 @@ export function CreateBoardComp() {
   const [description, setDesc] = useState("");
   const [photo, setPhoto] = useState<{ uri: string } | null>(null);
   const [showCamera, setShowCamera] = useState(false);
+
+  const { pickImage } = useImagePicker((p) => p && setPhoto(p));
 
   const handleCreate = () => {
     const trimmed = name.trim();
@@ -59,12 +61,16 @@ export function CreateBoardComp() {
       </View>
 
       {!showCamera && (
-        <TouchableOpacity onPress={() => setShowCamera(true)}>
-          <Text style={styles.cameraIcon}>📷 Add Photo</Text>
+        <TouchableOpacity style={styles.iconLayout} onPress={() => setShowCamera(true)}>
+          <Text style={styles.cameraIcon}>📷</Text>
+          <Text style={styles.input}>Add Photo</Text>
         </TouchableOpacity>
       )}
 
-      <ImagePickerButton onPicked={(p) => p && setPhoto(p)} />
+      <TouchableOpacity style={styles.iconLayout} onPress={pickImage}>
+        <Text style={styles.photoLibrary}>🖼️</Text>
+        <Text style={styles.input}>Choose from Library</Text>
+      </TouchableOpacity>
 
       {showCamera && (
         <CameraComponent
