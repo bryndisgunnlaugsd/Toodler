@@ -94,4 +94,19 @@ export default StyleSheet.create({
     shadowRadius: 8,
     elevation: 2,
   },
+  swipeDelete: {
+    flex: 1,                      
+    backgroundColor: "#ff3b30",
+    justifyContent: "center",
+    alignItems: "flex-end",
+    paddingHorizontal: 24,
+    marginBottom: 12,
+    borderRadius: 16,
+  },
+
+  swipeDeleteText: {
+    color: "#fff",
+    fontWeight: "700",
+    fontSize: 16,
+  },
 });

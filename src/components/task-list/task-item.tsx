@@ -58,11 +58,11 @@ export function TaskItem({
         {isMenuOpen && (
           <View style={styles.taskMenu}>
             <TouchableOpacity onPress={onEdit}>
-              <Text style={styles.taskMenuItem}>Edit task</Text>
+              <Text style={styles.taskMenuItem}>Edit</Text>
             </TouchableOpacity>
 
             <TouchableOpacity onPress={onDelete}>
-              <Text style={styles.taskMenuItemDelete}>Delete task</Text>
+              <Text style={styles.taskMenuItemDelete}>Delete</Text>
             </TouchableOpacity>
           </View>
         )}

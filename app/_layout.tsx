@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { Image } from "react-native";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ListStoreProvider } from "@/src/storage/list-storage";
 import { BoardStoreProvider } from "@/src/storage/board-storage";
@@ -31,8 +32,16 @@ export default function RootLayout() {
       <Stack.Screen 
       name="boards"
       options={{
-        title: "My Boards",
+        
         headerBackVisible: false,
+        // headerTitle: () => (
+        //   <Image
+        //     source={require("@/assets/images/toodler_logo.png")}
+        //     style={{ width: 200, height: 200 }}
+        //   />
+        // ),
+        headerTitleAlign: "center",
+        
       }}/>
 
       <Stack.Screen 
