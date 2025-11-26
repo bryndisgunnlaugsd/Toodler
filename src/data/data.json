@@ -23,13 +23,13 @@
     {
       "id": 1,
       "name": "Must see!",
-      "color": "#ffffff",
+      "color": "#FBD2D7",
       "boardId": 1
     },
     {
       "id": 2,
       "name": "One-day trips!",
-      "color": "#00ff00",
+      "color": "#F8D9B6",
       "boardId": 1
     },
     {
@@ -47,25 +47,25 @@
     {
       "id": 5,
       "name": "Done",
-      "color": "#555555",
+      "color": "#EAF5B0",
       "boardId": 2
     },
     {
       "id": 6,
       "name": "Top 10",
-      "color": "#ff0000",
+      "color": "#CFF3FF",
       "boardId": 3
     },
     {
       "id": 7,
       "name": "Top 10-20",
-      "color": "#0000ff",
+      "color": "#D8D4FF",
       "boardId": 3
     },
     {
       "id": 8,
       "name": "Last",
-      "color": "#ff00ff",
+      "color": "#F5D8FF",
       "boardId": 3
     }
   ],
