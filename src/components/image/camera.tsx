@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { CameraView, useCameraPermissions } from "expo-camera";
 import type { CameraViewRef } from "expo-camera";
 import styles from "../../views/createboard/styles";
+import * as Linking from "expo-linking";
 
 interface PhotoResult {
   uri: string;
@@ -29,9 +30,15 @@ export function CameraComponent({ onPictureTaken, onClose }: CameraComponentProp
     return (
       <View>
         <Text>Camera permission required</Text>
+        {permission?.canAskAgain ? (
         <TouchableOpacity onPress={requestPermission}>
           <Text>Grant Permission</Text>
         </TouchableOpacity>
+        ) : (
+        <TouchableOpacity onPress={() => Linking.openSettings()}>
+          <Text>Open Settings to Enable Camera</Text>
+        </TouchableOpacity>
+        )}
       </View>
     );
   }
