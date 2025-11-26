@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router";
 import styles from "@/src/views/create-list/styles";
-import { useListStore } from "@/src/storage/list-storage";
+import { UseListStore } from "@/src/storage/list-storage";
 
 const colors = [
   "#FBD2D7",
@@ -19,7 +19,7 @@ type EditListCompProps = {
 
 export function EditListComp({ listId }: EditListCompProps) {
   const router = useRouter();
-  const { lists, updateList} = useListStore();
+  const { lists, updateList} = UseListStore();
 
   const existingList = lists.find((l) => l.id === listId);
 
@@ -76,7 +76,7 @@ export function EditListComp({ listId }: EditListCompProps) {
               <TouchableOpacity
                 key={c}
                 onPress={() => setColor(c)}
-                
+
                 style={[
                   styles.colorSwatch,
                   { backgroundColor: c },

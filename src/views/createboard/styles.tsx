@@ -116,4 +116,8 @@ photoPreview: {
   marginTop: 10,
 },
 
+photoLibrary: {
+
+}
+
 });

@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import { useRouter } from "expo-router";
 import styles from "@/src/views/create-list/styles"; // reuse old existing styles
-import { useListStore } from "@/src/storage/list-storage";
+import { UseListStore } from "@/src/storage/list-storage";
 
 // color options
 const colors = [
@@ -22,7 +22,7 @@ type CreateListCompProps = {
 
 export function CreateListComp({ boardId }: CreateListCompProps) {
     const router = useRouter();
-    const { addList } = useListStore();
+    const { addList } = UseListStore();
 
     const [name, setName] = useState("");
     const [color, setColor] = useState(colors[0]);
@@ -54,7 +54,7 @@ export function CreateListComp({ boardId }: CreateListCompProps) {
         <View style={styles.colorsRow}>
           {colors.map((c) => {
             const selected = c === color;
-            
+
             return (
               <TouchableOpacity
                 key={c}
