@@ -12,7 +12,7 @@ export function Boards() {
                 style={styles.addButtonContainer}
                 onPress={() =>
                     router.push({
-                    pathname: "/createboard",
+                    pathname: "/create-board",
                     })
                 }
                 >

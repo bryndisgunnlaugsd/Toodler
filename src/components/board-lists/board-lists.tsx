@@ -14,7 +14,7 @@ export function BoardList() {
 
     const handleEdit = (id: number) => {
     router.push({
-        pathname: "/createboard",
+        pathname: "/create-board",
         params: { boardId: String(id) }
     });
     };
