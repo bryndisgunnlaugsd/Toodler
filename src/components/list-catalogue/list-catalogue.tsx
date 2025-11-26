@@ -27,6 +27,8 @@ export function ListCatalogue() {
         setOpenMenuId(null);
     };
 
+
+    //Deletes list (does not need its own component since it just sets the list to void in)
     const handleDelete = (id: number) => {
         deleteList(id);
         setOpenMenuId(null);
