@@ -8,10 +8,7 @@ A task management app built with React Native and Expo, featuring 3-tier organiz
 - **Tasks**:
 
 
-
-## Folder Structure
-
-## Gettin started
+## Getting started
 
 ### Pre-conditions
 
@@ -20,7 +17,7 @@ A task management app built with React Native and Expo, featuring 3-tier organiz
 
 1. **Clone the repository**
    ```bash
-   git clone <your-repository-url>
+   git clone <[(https://github.com/bryndisgunnlaugsd/Toodler)]>
    cd Toodler
    ```
 
@@ -29,18 +26,16 @@ A task management app built with React Native and Expo, featuring 3-tier organiz
    npm install
    ```
 
-
-
-
-   ```bash
-   npm install
-   ```
-
-3. Start the app
-
+### Running the App
    ```bash
    npx expo start
    ```
+This will start the Expo development server and show you a QR code.
+
+
+## Project Structure
+
+
 
 In the output, you'll find options to open the app in a
 
