@@ -1,3 +1,4 @@
+// src/types/task-storage.ts
 import { Task } from "./task";
 
 export type TaskStoreType = {
@@ -6,6 +7,11 @@ export type TaskStoreType = {
   deleteTask: (id: number) => void;
   updateTask: (
     id: number,
-    updates: { name?: string; description?: string; isFinished?: boolean }
+    updates: {
+      name?: string;
+      description?: string;
+      isFinished?: boolean;
+      listId?: number;
+    }
   ) => void;
 };

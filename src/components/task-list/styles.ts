@@ -52,4 +52,46 @@ export default StyleSheet.create({
     fontSize: 16,
     color: "#888",
   },
+
+  taskMenuWrapper: {
+    marginLeft: 8,
+    alignItems: "flex-end",
+    justifyContent: "center",
+  },
+  taskMenuButton: {
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+  },
+  taskMenuIcon: {
+    fontSize: 18,
+  },
+  taskMenu: {
+    marginTop: 4,
+    backgroundColor: "#FFFFFF",
+    borderRadius: 8,
+    paddingVertical: 4,
+    paddingHorizontal: 8,
+    shadowColor: "#000",
+    shadowOpacity: 0.15,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 6,
+    elevation: 3,
+  },
+  taskMenuItem: {
+    paddingVertical: 4,
+    fontSize: 14,
+    color: "#111",
+  },
+  taskMenuItemDelete: {
+    paddingVertical: 4,
+    fontSize: 14,
+    color: "#D11A2A",
+  },
+  taskRowActive: {
+    shadowColor: "#000",
+    shadowOpacity: 0.08,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 8,
+    elevation: 2,
+  },
 });

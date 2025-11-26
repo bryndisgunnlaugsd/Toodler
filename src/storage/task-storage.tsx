@@ -26,11 +26,12 @@ export function TaskStoreProvider({ children }: { children: React.ReactNode }) {
     setTasks((prev) => prev.filter((t) => t.id !== id));
   };
 
-  const updateTask: TaskStoreType["updateTask"] = (id, updates) => {
-    setTasks((prev) =>
-      prev.map((t) => (t.id === id ? { ...t, ...updates } : t))
-    );
-  };
+const updateTask: TaskStoreType["updateTask"] = (id, updates) => {
+  setTasks((prev) =>
+    prev.map((t) => (t.id === id ? { ...t, ...updates } : t))
+  );
+};
+
 
   return (
     <TaskStore.Provider value={{ tasks, addTask, deleteTask, updateTask }}>
