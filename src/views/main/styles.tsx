@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { white, black} from '@/src/styles/colors';
+import { StyleSheet } from "react-native";
+import { white, black} from "@/src/styles/colors";
 
 export default StyleSheet.create({
     container: {
@@ -27,9 +27,9 @@ export default StyleSheet.create({
         paddingBottom: 14,
         paddingLeft: 32,
         paddingRight: 32,
-        backgroundColor: 'white',
+        backgroundColor: "white",
         borderRadius: 25,
-        shadowColor: '#000',
+        shadowColor: "#000",
         shadowOffset: {
             width: 0,
             height: 1,
@@ -42,7 +42,7 @@ export default StyleSheet.create({
     buttonText: {
         color: black,
         fontSize: 18,
-        fontWeight: 'bold',
-        textAlign: 'center',
+        fontWeight: "bold",
+        textAlign: "center",
     }
-})    
+});

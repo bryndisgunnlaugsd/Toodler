@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React, { useEffect, useRef } from "react";
 import { CameraView, useCameraPermissions } from "expo-camera";
-import type { CameraViewRef } from "expo-camera";
 import styles from "../../views/createboard/styles";
 import * as Linking from "expo-linking";
 

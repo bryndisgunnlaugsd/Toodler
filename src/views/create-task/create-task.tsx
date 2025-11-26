@@ -3,15 +3,15 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import React, { useEffect, useState } from "react";
 import { Text, TextInput, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
-import { useTaskStore } from "@/src/storage/task-storage";
-import { useListStore } from "@/src/storage/list-storage";
+import { UseTaskStore } from "@/src/storage/task-storage";
+import { UseListStore } from "@/src/storage/list-storage";
 import { List } from "@/src/types/list";
 
 export function CreateTask() {
   const router = useRouter();
   const { listId, taskId } = useLocalSearchParams();
-  const { tasks, addTask, updateTask } = useTaskStore();
-  const { lists } = useListStore();
+  const { tasks, addTask, updateTask } = UseTaskStore();
+  const { lists } = UseListStore();
 
   const editing = !!taskId;
 

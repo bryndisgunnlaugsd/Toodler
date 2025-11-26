@@ -7,5 +7,5 @@ export function Boards() {
         <View style={styles.container}>
             <BoardList/>
         </View>
-    )
+    );
 }

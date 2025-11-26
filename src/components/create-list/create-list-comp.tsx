@@ -6,7 +6,7 @@ import styles from "@/src/views/create-list/styles"; // reuse old existing style
 import { useListStore } from "@/src/storage/list-storage";
 
 // color options
-const COLORS = [
+const colors = [
   "#FBD2D7",
   "#F8D9B6",
   "#EAF5B0",
@@ -25,13 +25,13 @@ export function CreateListComp({ boardId }: CreateListCompProps) {
     const { addList } = useListStore();
 
     const [name, setName] = useState("");
-    const [color, setColor] = useState(COLORS[0]);
+    const [color, setColor] = useState(colors[0]);
 
     const handleCreate = () => {
         if (!name.trim() || boardId == null) return;
 
-        addList(boardId, name.trim(), color)
-        router.back()
+        addList(boardId, name.trim(), color);
+        router.back();
     };
 
     return (
@@ -52,8 +52,9 @@ export function CreateListComp({ boardId }: CreateListCompProps) {
       <View style={styles.section}>
         <Text style={styles.label}>List Color</Text>
         <View style={styles.colorsRow}>
-          {COLORS.map((c) => {
+          {colors.map((c) => {
             const selected = c === color;
+            
             return (
               <TouchableOpacity
                 key={c}

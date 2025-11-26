@@ -1,5 +1,4 @@
-import { StyleSheet } from 'react-native';
-import { primaryBlue, gray700, primaryRed, primaryGreen, primaryPurple } from '@/src/styles/colors';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
@@ -24,18 +23,18 @@ export default StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 20,
         paddingRight: 20,
-        borderColor: 'white',
+        borderColor: "white",
         borderWidth: 2,
-        backgroundColor: gray700,
+        backgroundColor: "gray",
     },
 
     buttonText:{
-        color: 'white'
+        color: "white"
     },
 
     title: {
         fontSize: 24,
-        fontWeight: 'bold',
+        fontWeight: "bold",
         marginBottom: 20,},
     addButton: {
     fontSize: 28,

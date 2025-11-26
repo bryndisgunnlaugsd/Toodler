@@ -4,7 +4,7 @@ import { useRouter } from "expo-router";
 import styles from "@/src/views/create-list/styles";
 import { useListStore } from "@/src/storage/list-storage";
 
-const COLORS = [
+const colors = [
   "#FBD2D7",
   "#F8D9B6",
   "#EAF5B0",
@@ -19,13 +19,13 @@ type EditListCompProps = {
 
 export function EditListComp({ listId }: EditListCompProps) {
   const router = useRouter();
-  const { lists, updateList, deleteList } = useListStore();
+  const { lists, updateList} = useListStore();
 
   const existingList = lists.find((l) => l.id === listId);
 
   const [name, setName] = useState(existingList?.name ?? "");
   const [color, setColor] = useState<string>(
-    existingList?.color ?? COLORS[0]
+    existingList?.color ?? colors[0]
   );
 
   // sync if list loads later
@@ -43,10 +43,6 @@ export function EditListComp({ listId }: EditListCompProps) {
     updateList(listId, { name: trimmed, color });
     router.back();
   };
-
-  const handleDelete = (id: number) => {
-        deleteList(id);
-    };
 
   if (!existingList) {
     return (
@@ -74,12 +70,13 @@ export function EditListComp({ listId }: EditListCompProps) {
       <View style={styles.section}>
         <Text style={styles.label}>List Color</Text>
         <View style={styles.colorsRow}>
-          {COLORS.map((c) => {
+          {colors.map((c) => {
             const selected = c === color;
             return (
               <TouchableOpacity
                 key={c}
                 onPress={() => setColor(c)}
+                
                 style={[
                   styles.colorSwatch,
                   { backgroundColor: c },

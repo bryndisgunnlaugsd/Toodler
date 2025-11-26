@@ -1,4 +1,3 @@
-import data from "@/src/data/data.json";
 import styles from "./styles";
 import { FlatList, View, Pressable, Text } from "react-native";
 import { Board } from "@/src/types/board";
@@ -53,7 +52,7 @@ export function BoardList() {
             <Pressable
                 style={styles.plusbutton}
                 onPress={() => {
-                    router.push("/createboard")
+                    router.push("/createboard");
                 }}
             >
                 <Text style={styles.plusbuttontext}>+</Text>

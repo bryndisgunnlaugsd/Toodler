@@ -1,6 +1,4 @@
-import { StyleSheet } from 'react-native';
-import styles from "./styles";
-import { primaryBlue, gray700, primaryRed, white } from '@/src/styles/colors';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
@@ -117,9 +115,5 @@ photoPreview: {
   borderRadius: 12,
   marginTop: 10,
 },
-
-photoLibrary: {
-    
-}
 
 });

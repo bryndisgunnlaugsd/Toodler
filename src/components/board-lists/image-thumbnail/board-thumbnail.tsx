@@ -16,9 +16,9 @@ export function BoardThumbnail({ board, onPress, menuOpen, onToggleMenu, onEdit,
     return (
         <View style={styles.shadowWrapper}>
             <Pressable onPress={onPress} style={styles.card}>
-                <Image 
-                    resizeMode="cover" 
-                    source={{ uri: board.thumbnailPhoto }} 
+                <Image
+                    resizeMode="cover"
+                    source={{ uri: board.thumbnailPhoto }}
                     style={styles.image}
                 />
                 <View style={styles.textContainer}>

@@ -21,6 +21,7 @@ export function ImagePickerButton({ onPicked }: ImagePickerButtonProps) {
   const requestPermission = async () => {
     const res = await ImagePicker.requestMediaLibraryPermissionsAsync();
     setPermission(res);
+
     return res;
   };
 
@@ -29,7 +30,7 @@ export function ImagePickerButton({ onPicked }: ImagePickerButtonProps) {
     setPermission(perm);
 
     if (!perm.granted) {
-      return; 
+      return;
     }
 
     const result = await ImagePicker.launchImageLibraryAsync({

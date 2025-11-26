@@ -1,5 +1,5 @@
-import { white } from '@/src/styles/colors';
-import { StyleSheet } from 'react-native';
+import { white } from "@/src/styles/colors";
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
@@ -15,8 +15,8 @@ export default StyleSheet.create({
     },
 
     buttonText:{
-        color: 'black'
+        color: "black"
     }
 
 
-})
+});

@@ -1,9 +1,9 @@
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { FlatList, Text, TouchableOpacity, View } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 import data from "../../data/data.json";
 import { ListCatalogue } from "@/src/components/list-catalogue/list-catalogue";
-import { Board } from "@/src/types/board"
+import { Board } from "@/src/types/board";
 
 export function Lists() {
     const router = useRouter();
@@ -19,7 +19,7 @@ export function Lists() {
                 <Text style={styles.title}>
                     {currentBoard?.name}
                 </Text>
-                
+
                 <TouchableOpacity
                     style={styles.addButtonContainer}
                     onPress={() =>
@@ -33,8 +33,8 @@ export function Lists() {
             </TouchableOpacity>
 
             </View>
-            
+
             <ListCatalogue/>
         </View>
-    )
+    );
 }
