@@ -1,48 +1,37 @@
-import data from "@/src/data/data.json";
 import { FlatList, View, Text, Pressable } from "react-native";
 import styles from "../task-list/styles";
 import { Task } from "@/src/types/task";
-import { useRoute } from "@react-navigation/native";
 import { useLocalSearchParams } from "expo-router";
-import { useState } from "react";
-import Checkbox from "expo-checkbox"
-
+import Checkbox from "expo-checkbox";
+import { useTaskStore } from "@/src/storage/task-storage";
 
 export function TaskList() {
-    const router = useRoute();
-    const { listId } = useLocalSearchParams();
+  const { listId } = useLocalSearchParams();
+  const { tasks, updateTask } = useTaskStore();
 
-    const filteredTasks = data.tasks.filter(
-        task => task.listId === Number(listId)
-    );
+  const numericListId = Number(listId);
 
-    const [tasks, setTasks] = useState<Task[]>(filteredTasks)
+  const filteredTasks = tasks.filter(
+    (task) => task.listId === numericListId
+  );
 
-    const ToggleTask = (taskId: number, newValue: boolean) => {
-        setTasks((prev) =>
-            prev.map((task) =>
-            task.id === taskId
-                ?{ ...task, isFinished: !task.isFinished}
-                : task
-            )
-        );
-    };
+  const toggleTask = (taskId: number, currentValue: boolean) => {
+    updateTask(taskId, { isFinished: !currentValue });
+  };
 
-  const RenderItem = ({ item }: { item: Task }) => {
-    const HandleToggle = (newValue: boolean) => {
-      ToggleTask(item.id, newValue);
-    };
+  const renderItem = ({ item }: { item: Task }) => {
+    const handleToggle = () => toggleTask(item.id, item.isFinished);
 
     return (
       <View style={styles.row}>
         <Checkbox
           value={item.isFinished}
-          onValueChange={HandleToggle}
+          onValueChange={handleToggle}
         />
 
         <Pressable
           style={styles.textPressable}
-          onPress={() => HandleToggle(!item.isFinished)}
+          onPress={handleToggle}
         >
           <Text
             style={[
@@ -60,16 +49,18 @@ export function TaskList() {
       </View>
     );
   };
-    return(
 
-        <View style={styles.container}>
-            <FlatList
-            data={tasks}
-            keyExtractor={(item) => item.id.toString()}
-            renderItem={RenderItem}
-            ListEmptyComponent={
-            <Text>There is no task for this list... create one!</Text>}
-            />
-        </View>
-    );
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={filteredTasks}
+        extraData={tasks}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderItem}
+        ListEmptyComponent={
+          <Text>There is no task for this list... create one!</Text>
+        }
+      />
+    </View>
+  );
 }

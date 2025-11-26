@@ -1,81 +1,74 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
-    paddingHorizontal: 28,
-    paddingTop: 80,
+    backgroundColor: "#FFFFFF",
+    paddingHorizontal: 24,
+    paddingTop: 32,
   },
+
   title: {
-    fontSize: 26,
+    fontSize: 28,
     fontWeight: "800",
     textAlign: "center",
-    marginBottom: 40,
+    marginBottom: 32,
+    color: "#000000",
   },
-  section: {
-    marginBottom: 28,
+
+  formBlock: {
+    marginBottom: 24,
   },
+
   label: {
     fontSize: 16,
-    fontWeight: "700",
-    marginBottom: 10,
+    fontWeight: "600",
+    color: "#111111",
+    marginBottom: 8,
   },
+
   input: {
-    borderRadius: 12,
+    height: 52,
+    borderRadius: 18,
+    paddingHorizontal: 16,
+    backgroundColor: "#F3F4F6",
     borderWidth: 1,
-    borderColor: "#ddd",
-    backgroundColor: "#F7F8FA",
-    paddingHorizontal: 14,
-    paddingVertical: 10,
+    borderColor: "#E5E7EB",
     fontSize: 16,
   },
-  colorsRow: {
-    flexDirection: "row",
-    gap: 10,
-    marginTop: 10,
-  },
-  colorSwatch: {
-    width: 44,
-    height: 44,
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  colorSwatchSelected: {
-    borderWidth: 2,
-    borderColor: "#222",
-  },
-  check: {
-    fontSize: 20,
-  },
+
   buttonsRow: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginTop: 40,
+    alignItems: "center",
+    gap: 16,
+    marginTop: 28,
   },
+
   button: {
     flex: 1,
-    paddingVertical: 14,
-    borderRadius: 14,
+    height: 56,
+    borderRadius: 18,
+    justifyContent: "center",
     alignItems: "center",
+
     shadowColor: "#000",
-    shadowOpacity: 0.15,
-    shadowOffset: { width: 0, height: 4 },
-    shadowRadius: 6,
-    elevation: 4,
+    shadowOpacity: 0.08,
+    shadowOffset: { width: 0, height: 3 },
+    shadowRadius: 8,
   },
+
   buttonLight: {
-    backgroundColor: "#E9EDF5",
-    marginRight: 10,
+    backgroundColor: "#EEF3FF",
   },
+
   buttonGrey: {
-    backgroundColor: "#E0E0E0",
-    marginLeft: 10,
+    backgroundColor: "#E5E5EA",
   },
+
   buttonTextDark: {
     fontSize: 16,
-    fontWeight: "700",
-    color: "#000",
+    fontWeight: "600",
+    color: "#111111",
   },
 });
