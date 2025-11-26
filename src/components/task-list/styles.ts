@@ -95,7 +95,7 @@ export default StyleSheet.create({
     elevation: 2,
   },
   swipeDelete: {
-    flex: 1,                      
+    flex: 1,
     backgroundColor: "#ff3b30",
     justifyContent: "center",
     alignItems: "flex-end",

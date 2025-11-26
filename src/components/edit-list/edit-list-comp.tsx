@@ -72,6 +72,7 @@ export function EditListComp({ listId }: EditListCompProps) {
         <View style={styles.colorsRow}>
           {colors.map((c) => {
             const selected = c === color;
+
             return (
               <TouchableOpacity
                 key={c}

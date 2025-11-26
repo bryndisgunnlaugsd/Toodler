@@ -1,5 +1,5 @@
 import styles from "./styles";
-import { FlatList, View, Pressable, Text } from "react-native";
+import { FlatList, View, Text } from "react-native";
 import { Board } from "@/src/types/board";
 import { BoardThumbnail } from "./image-thumbnail/board-thumbnail";
 import { useRouter } from "expo-router";

@@ -43,6 +43,6 @@ const updateTask: TaskStoreType["updateTask"] = (id, updates) => {
 export function useTaskStore() {
   const ctx = useContext(taskStore);
   if (!ctx) throw new Error("useTaskStore must be inside TaskStoreProvider");
-  
+
   return ctx;
 }

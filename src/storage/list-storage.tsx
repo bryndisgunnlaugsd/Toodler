@@ -47,6 +47,6 @@ const addList = (boardId: number, name: string, color: string) => {
 export function useListStore() {
     const ctx = useContext(listStore);
     if (!ctx) throw new Error("useListStore must be inside ListStoreProvider");
-    
+
 return ctx;
 }

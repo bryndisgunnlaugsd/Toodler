@@ -16,12 +16,12 @@ export function Boards() {
                     })
                 }
                 >
-            
+
             <Text style={styles.addButton}>＋</Text>
             </TouchableOpacity>
 
             </View>
-            
+
             <BoardList/>
         </View>
     );

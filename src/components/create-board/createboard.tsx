@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
-import { useRouter } from "expo-router";
-import styles from "@/src/views/createboard/styles";
 import { useBoardStore } from "@/src/storage/board-storage";
+import styles from "@/src/views/createboard/styles";
+import { useRouter } from "expo-router";
+import React, { useState } from "react";
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { CameraComponent } from "@/src/components/image/camera";
 import { useImagePicker } from "@/src/components/image/imagepicker";

@@ -1,17 +1,10 @@
-import React, { useState } from "react";
-import { TouchableOpacity, Text, View } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-import * as Linking from "expo-linking";
-import styles from "../../views/createboard/styles";
+import { useState } from "react";
 
 interface PhotoResult {
   uri: string;
   width: number;
   height: number;
-}
-
-interface ImagePickerButtonProps {
-  onPicked: (photo: PhotoResult | null) => void;
 }
 
 export function useImagePicker(onPicked: (photo: PhotoResult | null) => void) {
@@ -21,6 +14,7 @@ export function useImagePicker(onPicked: (photo: PhotoResult | null) => void) {
   const requestPermission = async () => {
     const res = await ImagePicker.requestMediaLibraryPermissionsAsync();
     setPermission(res);
+
     return res;
   };
 

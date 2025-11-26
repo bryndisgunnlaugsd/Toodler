@@ -4,12 +4,14 @@ import styles from "./styles";
 import data from "../../data/data.json";
 import { ListCatalogue } from "@/src/components/list-catalogue/list-catalogue";
 import { Board } from "@/src/types/board";
+import { useBoardStore } from "@/src/storage/board-storage";
 
 export function Lists() {
     const router = useRouter();
+    const { boards } = useBoardStore()
     const { boardId } = useLocalSearchParams();
 
-    const currentBoard: Board | undefined = data.boards.find(
+    const currentBoard: Board | undefined = boards.find(
     (board) => board.id === Number(boardId)
   );
 

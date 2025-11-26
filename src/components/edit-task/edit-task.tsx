@@ -45,7 +45,7 @@ export function EditTaskComp({ taskId }: EditTaskCompProps) {
 
   const handleSave = () => {
     const trimmed = name.trim();
-    if (!task || !trimmed || selectedListId == null) return;
+    if (!task || !trimmed || selectedListId === null) return;
 
     updateTask(taskId, {
       name: trimmed,

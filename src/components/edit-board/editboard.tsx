@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
-import { useRouter } from "expo-router";
-import styles from "@/src/views/createboard/styles";
 import { useBoardStore } from "@/src/storage/board-storage";
+import styles from "@/src/views/createboard/styles";
+import { useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { CameraComponent } from "@/src/components/image/camera";
-import { useImagePicker } from "@/src/components/image/imagepicker";
 import { PhotoPreview } from "@/src/components/image/photopreview";
 
 type EditBoardCompProps = {
@@ -17,8 +16,6 @@ export function EditBoardComp({ boardId }: EditBoardCompProps) {
   const { boards, updateBoard } = useBoardStore();
 
   const existing = boards.find((b) => b.id === boardId);
-
-  const { pickImage } = useImagePicker((p) => p && setPhoto(p));
 
 
   const [name, setName] = useState(existing?.name ?? "");
