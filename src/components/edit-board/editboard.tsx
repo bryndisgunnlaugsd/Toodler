@@ -5,7 +5,7 @@ import styles from "@/src/views/createboard/styles";
 import { useBoardStore } from "@/src/storage/board-storage";
 
 import { CameraComponent } from "@/src/components/image/camera";
-import { ImagePickerButton } from "@/src/components/image/imagepicker";
+import { useImagePicker } from "@/src/components/image/imagepicker";
 import { PhotoPreview } from "@/src/components/image/photopreview";
 
 type EditBoardCompProps = {
@@ -17,6 +17,9 @@ export function EditBoardComp({ boardId }: EditBoardCompProps) {
   const { boards, updateBoard } = useBoardStore();
 
   const existing = boards.find((b) => b.id === boardId);
+
+  const { pickImage } = useImagePicker((p) => p && setPhoto(p));
+
 
   const [name, setName] = useState(existing?.name ?? "");
   const [description, setDesc] = useState(existing?.description ?? "");
@@ -94,8 +97,6 @@ export function EditBoardComp({ boardId }: EditBoardCompProps) {
           <Text style={styles.cameraIcon}>📷 Change Photo</Text>
         </TouchableOpacity>
       )}
-
-      <ImagePickerButton onPicked={(p) => p && setPhoto(p)} />
 
       {showCamera && (
         <CameraComponent
