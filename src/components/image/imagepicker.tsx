@@ -19,10 +19,21 @@ export function useImagePicker(onPicked: (photo: PhotoResult | null) => void) {
   };
 
   const pickImage = async () => {
-    let perm = permission ?? (await ImagePicker.getMediaLibraryPermissionsAsync());
-    setPermission(perm);
+    // First, check current permission status
+    let perm = await ImagePicker.getMediaLibraryPermissionsAsync();
 
-    if (!perm.granted) return false;
+    // If not granted, request permission
+    if (!perm.granted) {
+      perm = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      setPermission(perm);
+
+      // If still not granted after request, return
+      if (!perm.granted) {
+        console.log("Permission not granted");
+
+        return false;
+      }
+    }
 
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -44,4 +55,3 @@ export function useImagePicker(onPicked: (photo: PhotoResult | null) => void) {
 
   return { permission, requestPermission, pickImage };
 }
-
