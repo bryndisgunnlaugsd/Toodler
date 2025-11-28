@@ -48,7 +48,7 @@ export function ListCatalogue() {
                     style={[
                         styles.listItem,
                         { backgroundColor: item.color },
-                        isMenuOpen && styles.listItemActive, // 👈 raise this card
+                        isMenuOpen && styles.listItemActive,
                     ]}
                     >
                     {/* main clickable area: open tasks */}
