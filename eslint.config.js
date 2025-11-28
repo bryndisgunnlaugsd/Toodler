@@ -21,19 +21,15 @@ module.exports = defineConfig([
         selector: 'variable',
         format: ['camelCase'],
       },
+      {
+        selector: 'function',
+        format: ['camelCase'],
+        filter: {
+          regex: '^use[A-Z]',
+          match: true,
+        },
+      }
     ],
-
-    // // --- Docstrings ---
-    // 'require-jsdoc': [
-    //   'error',
-    //   {
-    //     require: {
-    //       FunctionDeclaration: true,
-    //       MethodDefinition: true,
-    //     },
-    //   },
-    // ],
-    // 'valid-jsdoc': 'error',
 
     // --- Spacing ---
     'padding-line-between-statements': [
@@ -47,7 +43,7 @@ module.exports = defineConfig([
     'quotes': ['error', 'double'],
     'semi': ['error', 'always'],
     'eqeqeq': ['error', 'always'],
-    'max-len': ['error', { code: 100 }],
+    'max-len': ['error', { code: 115 }],
   },
 },
   {

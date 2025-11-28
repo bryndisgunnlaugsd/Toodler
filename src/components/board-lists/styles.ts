@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { white } from '@/src/styles/colors';
+import { white } from "@/src/styles/colors";
 
 export default StyleSheet.create({
     listContainer: {
@@ -20,7 +20,7 @@ export default StyleSheet.create({
         borderWidth:0.75,
         borderColor: "Black",
     },
-    
+
     plusbuttontext: {
         color: "white",
         fontSize: 30,

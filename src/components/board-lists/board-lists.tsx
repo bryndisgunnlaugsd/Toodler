@@ -1,6 +1,5 @@
-import data from "@/src/data/data.json";
 import styles from "./styles";
-import { FlatList, View, Pressable, Text } from "react-native";
+import { FlatList, View, Text } from "react-native";
 import { Board } from "@/src/types/board";
 import { BoardThumbnail } from "./image-thumbnail/board-thumbnail";
 import { useRouter } from "expo-router";
@@ -15,7 +14,7 @@ export function BoardList() {
 
     const handleEdit = (id: number) => {
     router.push({
-        pathname: "/createboard",
+        pathname: "/create-board",
         params: { boardId: String(id) }
     });
     };
@@ -50,14 +49,6 @@ export function BoardList() {
             )}
             ListEmptyComponent={<Text>No lists found for this board</Text>}
         />
-            <Pressable
-                style={styles.plusbutton}
-                onPress={() => {
-                    router.push("/createboard")
-                }}
-            >
-                <Text style={styles.plusbuttontext}>+</Text>
-            </Pressable>
         </View>
     );
 }

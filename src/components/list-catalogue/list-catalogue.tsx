@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import { useListStore } from "@/src/storage/list-storage";
 import { useLocalSearchParams, useRouter } from "expo-router";
+import React, { useState } from "react";
 import { FlatList, Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
-import { useListStore } from "@/src/storage/list-storage";
 
 export function ListCatalogue() {
     const router = useRouter();
@@ -48,7 +48,7 @@ export function ListCatalogue() {
                     style={[
                         styles.listItem,
                         { backgroundColor: item.color },
-                        isMenuOpen && styles.listItemActive, // 👈 raise this card
+                        isMenuOpen && styles.listItemActive,
                     ]}
                     >
                     {/* main clickable area: open tasks */}

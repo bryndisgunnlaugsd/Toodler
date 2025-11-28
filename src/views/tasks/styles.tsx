@@ -1,17 +1,12 @@
-import { StyleSheet } from 'react-native';
-import { primaryBlue, gray700, primaryRed, primaryGreen, primaryPurple } from '@/src/styles/colors';
+import { StyleSheet } from "react-native";
 
 export default StyleSheet.create({
     container: {
         flex: 1,
-        padding: 16
-    },
-
-    image: {
-        width: 200,
-        height: 200,
-
-    },
+        paddingHorizontal: 16,
+        paddingTop: 32,
+        backgroundColor: "#f5f5f5",
+  },
 
     paragraph: {
         textAlign: "center",
@@ -24,21 +19,48 @@ export default StyleSheet.create({
         paddingBottom: 10,
         paddingLeft: 20,
         paddingRight: 20,
-        borderColor: 'white',
+        borderColor: "white",
         borderWidth: 2,
-        backgroundColor: gray700,
+        backgroundColor: "gray",
     },
 
     buttonText:{
-        color: 'white'
+        color: "white"
     },
 
     title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,},
-    addButton: {
-    fontSize: 28,
+        fontSize: 28,
+        fontWeight: "bold",
+        marginBottom: 0,
+        color: "#000",
+        marginHorizontal:15,
     },
 
-})
+    addButtonContainer: {
+        width: 40,
+        height: 40,
+        marginEnd:15,
+        borderRadius: 20,
+        backgroundColor: "#ffffff",
+        justifyContent: "center",
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.15,
+        shadowRadius: 4,
+        elevation: 3,
+    },
+    addButton: {
+        fontSize: 26,
+        color: "#000",
+        fontWeight: "400",
+        textAlign: "center",
+        lineHeight: 26,
+    },
+    headerRow: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginBottom: 24,
+    },
+});

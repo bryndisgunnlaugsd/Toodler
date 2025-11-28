@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, TextInput, TouchableOpacity, ScrollView } from "react-native";
-import { useRouter } from "expo-router";
-import styles from "@/src/views/createboard/styles";
 import { useBoardStore } from "@/src/storage/board-storage";
+import styles from "@/src/views/createboard/styles";
+import { useRouter } from "expo-router";
+import React, { useEffect, useState } from "react";
+import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { CameraComponent } from "@/src/components/image/camera";
-import { ImagePickerButton } from "@/src/components/image/imagepicker";
 import { PhotoPreview } from "@/src/components/image/photopreview";
+import { useImagePicker } from "../image/imagepicker";
 
 type EditBoardCompProps = {
   boardId: number;
@@ -18,12 +18,15 @@ export function EditBoardComp({ boardId }: EditBoardCompProps) {
 
   const existing = boards.find((b) => b.id === boardId);
 
+
   const [name, setName] = useState(existing?.name ?? "");
   const [description, setDesc] = useState(existing?.description ?? "");
   const [photo, setPhoto] = useState<{ uri: string } | null>(
     existing?.thumbnailPhoto ? { uri: existing.thumbnailPhoto } : null
   );
   const [showCamera, setShowCamera] = useState(false);
+
+  const { pickImage } = useImagePicker((p) => p && setPhoto(p));
 
   useEffect(() => {
     if (existing) {
@@ -90,12 +93,16 @@ export function EditBoardComp({ boardId }: EditBoardCompProps) {
       </View>
 
       {!showCamera && (
-        <TouchableOpacity onPress={() => setShowCamera(true)}>
-          <Text style={styles.cameraIcon}>📷 Change Photo</Text>
+        <TouchableOpacity style={styles.iconLayout} onPress={() => setShowCamera(true)}>
+          <Text style={styles.cameraIcon}>📷</Text>
+          <Text style={styles.input}>Change Photo</Text>
         </TouchableOpacity>
       )}
 
-      <ImagePickerButton onPicked={(p) => p && setPhoto(p)} />
+      <TouchableOpacity style={styles.iconLayout} onPress={pickImage}>
+        <Text style={styles.photoLibrary}>🖼️</Text>
+        <Text style={styles.input}>Change Photo from Library</Text>
+      </TouchableOpacity>
 
       {showCamera && (
         <CameraComponent

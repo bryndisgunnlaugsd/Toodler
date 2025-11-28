@@ -1,16 +1,16 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { List } from "../types/list"
-import { ListStoreType } from "../types/list-storage";
 import data from "../data/data.json";
+import { List } from "../types/list";
+import { ListStoreType } from "../types/list-storage";
 
-const ListStore = createContext<ListStoreType | null>(null);
+const listStore = createContext<ListStoreType | null>(null);
 
 export function ListStoreProvider({ children }: { children: React.ReactNode }) {
   const [lists, setLists] = useState<List[]>([]);
 
 // Load initial lists from data.json
 useEffect(() => {
-    setLists(data.lists); 
+    setLists(data.lists);
 }, []);
 
 const addList = (boardId: number, name: string, color: string) => {
@@ -21,7 +21,7 @@ const addList = (boardId: number, name: string, color: string) => {
         color,
     };
     setLists(prev => [...prev, newList]);
-    
+
     };
 
     const deleteList = (id: number) => {
@@ -38,14 +38,15 @@ const addList = (boardId: number, name: string, color: string) => {
     };
 
     return (
-    <ListStore.Provider value={{ lists, addList, deleteList, updateList }}>
+    <listStore.Provider value={{ lists, addList, deleteList, updateList }}>
         {children}
-    </ListStore.Provider>
+    </listStore.Provider>
     );
 }
 
 export function useListStore() {
-    const ctx = useContext(ListStore);
+    const ctx = useContext(listStore);
     if (!ctx) throw new Error("useListStore must be inside ListStoreProvider");
+
 return ctx;
 }

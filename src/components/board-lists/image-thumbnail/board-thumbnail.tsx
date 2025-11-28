@@ -16,9 +16,9 @@ export function BoardThumbnail({ board, onPress, menuOpen, onToggleMenu, onEdit,
     return (
         <View style={styles.shadowWrapper}>
             <Pressable onPress={onPress} style={styles.card}>
-                <Image 
-                    resizeMode="cover" 
-                    source={{ uri: board.thumbnailPhoto }} 
+                <Image
+                    resizeMode="cover"
+                    source={{ uri: board.thumbnailPhoto }}
                     style={styles.image}
                 />
                 <View style={styles.textContainer}>
@@ -29,7 +29,7 @@ export function BoardThumbnail({ board, onPress, menuOpen, onToggleMenu, onEdit,
                 {/* Menu wrapper */}
                 <View style={styles.menuWrapper}>
                 <TouchableOpacity onPress={onToggleMenu} style={styles.menuButton}>
-                    <Text style={styles.menuIcon}>⋮</Text>
+                    <Text style={styles.menuIcon}>≡</Text>
                 </TouchableOpacity>
 
                 {menuOpen && (

@@ -3,7 +3,7 @@ import { Board } from "../types/board";
 import { BoardStoreType } from "../types/board-storage";
 import data from "../data/data.json";
 
-const BoardStore = createContext<BoardStoreType | null>(null);
+const boardStore = createContext<BoardStoreType | null>(null);
 
 export function BoardStoreProvider({ children }: {children: React.ReactNode}) {
     const[boards, setBoards] = useState<Board[]>([]);
@@ -41,14 +41,15 @@ useEffect(() => {
     };
 
     return (
-        <BoardStore.Provider value= {{ boards, addBoard, deleteBoard, updateBoard}}>
+        <boardStore.Provider value= {{ boards, addBoard, deleteBoard, updateBoard}}>
             {children}
-        </BoardStore.Provider>
+        </boardStore.Provider>
     );
 }
 
 export function useBoardStore() {
-    const ctx = useContext(BoardStore);
+    const ctx = useContext(boardStore);
     if (!ctx) throw new Error("useBoardStore must be inside BoardStoreProvider");
+
 return ctx;
 }

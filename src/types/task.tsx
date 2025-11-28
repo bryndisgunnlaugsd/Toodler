@@ -4,4 +4,4 @@ export interface Task {
     description: string,
     isFinished: boolean,
     listId: number
-} 
+}

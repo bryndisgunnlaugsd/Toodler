@@ -1,4 +1,5 @@
 import { Stack } from "expo-router";
+import { Image } from "react-native";
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ListStoreProvider } from "@/src/storage/list-storage";
 import { BoardStoreProvider } from "@/src/storage/board-storage";
@@ -31,14 +32,23 @@ export default function RootLayout() {
       <Stack.Screen 
       name="boards"
       options={{
-        title: "My Boards",
+        title: "",
         headerBackVisible: false,
+        headerTitle: () => (
+          <Image
+            source={require("@/assets/images/toodler_logo.png")}
+            style={{width: 184, height: 40}}
+          />
+        ),
+        headerTitleAlign: "center",
+        
       }}/>
 
       <Stack.Screen 
       name="lists"
       options={{
         title: "Lists",
+        headerBackTitle: "",
       }}/>
 
       <Stack.Screen 
@@ -50,23 +60,23 @@ export default function RootLayout() {
       <Stack.Screen
       name="create-list"
       options={{ 
-        title: "Create List" 
+        title: "" 
       }}/>
 
       <Stack.Screen
       name="create-task"
       options={{ 
-        title: "Create Task" 
+        title: "" 
       }}/>
 
       <Stack.Screen
       name="create-board"
       options={{
-        title: "Create Board",
+        title: "",
       }}
     />
 
-    </Stack>;
+    </Stack>
     </TaskStoreProvider>
     </ListStoreProvider>
     </BoardStoreProvider>

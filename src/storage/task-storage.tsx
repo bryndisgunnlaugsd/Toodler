@@ -3,7 +3,7 @@ import { Task } from "../types/task";
 import { TaskStoreType } from "../types/task-storage";
 import data from "../data/data.json";
 
-const TaskStore = createContext<TaskStoreType | null>(null);
+const taskStore = createContext<TaskStoreType | null>(null);
 
 export function TaskStoreProvider({ children }: { children: React.ReactNode }) {
   const [tasks, setTasks] = useState<Task[]>(data.tasks);
@@ -34,14 +34,15 @@ const updateTask: TaskStoreType["updateTask"] = (id, updates) => {
 
 
   return (
-    <TaskStore.Provider value={{ tasks, addTask, deleteTask, updateTask }}>
+    <taskStore.Provider value={{ tasks, addTask, deleteTask, updateTask }}>
       {children}
-    </TaskStore.Provider>
+    </taskStore.Provider>
   );
 }
 
 export function useTaskStore() {
-  const ctx = useContext(TaskStore);
+  const ctx = useContext(taskStore);
   if (!ctx) throw new Error("useTaskStore must be inside TaskStoreProvider");
+
   return ctx;
 }

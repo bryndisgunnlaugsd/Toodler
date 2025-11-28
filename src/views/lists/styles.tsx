@@ -1,5 +1,5 @@
-import { StyleSheet } from 'react-native';
-import { white } from '@/src/styles/colors';
+import { StyleSheet } from "react-native";
+import { white } from "@/src/styles/colors";
 
 export default StyleSheet.create({
     container: {
@@ -15,7 +15,7 @@ export default StyleSheet.create({
     },
     title: {
         fontSize: 24,
-        fontWeight: 'bold',
+        fontWeight: "bold",
         flex: 1,
         marginLeft: 10,
     },
@@ -23,11 +23,11 @@ export default StyleSheet.create({
         width: 35,
         height: 35,
         borderRadius: 20,
-        backgroundColor: '#f5f5f5',
-        justifyContent: 'center',
-        alignItems: 'center',
+        backgroundColor: "#f5f5f5",
+        justifyContent: "center",
+        alignItems: "center",
         marginHorizontal: 8,
-        shadowColor: '#000',
+        shadowColor: "#000",
         shadowOffset: {
             width: 0,
             height: 2,
@@ -38,9 +38,9 @@ export default StyleSheet.create({
     },
     addButton: {
         fontSize: 28,
-        color: '#000',
-        fontWeight: '300',
-        textAlign: 'center',
+        color: "#000",
+        fontWeight: "300",
+        textAlign: "center",
         lineHeight: 28,
     },
     listItem: {
@@ -48,22 +48,22 @@ export default StyleSheet.create({
         marginVertical: 8,
         borderRadius: 8,
         borderWidth: 1,
-        borderColor: '#ddd',
+        borderColor: "#ddd",
         height: 70
     },
     listName: {
         fontSize: 18,
-        fontWeight: '600',
+        fontWeight: "600",
     },
     button: {
-        backgroundColor: '#007AFF',
+        backgroundColor: "#007AFF",
         padding: 15,
         borderRadius: 8,
         marginBottom: 10,
      },
     buttonText: {
-        color: 'white',
-        textAlign: 'center',
+        color: "white",
+        textAlign: "center",
         fontSize: 16,
     },
 });

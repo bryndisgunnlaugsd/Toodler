@@ -1,35 +1,42 @@
 import { TaskList } from "@/src/components/task-list/task-list";
-import styles from "./styles";
+import { useListStore } from "@/src/storage/list-storage";
 import { useLocalSearchParams, useRouter } from "expo-router";
-import { View, Text, TouchableOpacity } from "react-native";
-import { List } from "@/src/types/list"
-import data from "../../data/data.json"
+import { Text, TouchableOpacity, View } from "react-native";
+import styles from "./styles";
 
 export function Tasks() {
-    const router = useRouter();
-    const { listId } = useLocalSearchParams();
+  const router = useRouter();
+  const { listId } = useLocalSearchParams();
+  const { lists } = useListStore();
 
-    const currentList: List | undefined = data.lists.find(
-        (list) => list.id === Number(listId)
-    );
+  const currentList = lists.find(
+    (list) => list.id === Number(listId)
+  );
 
-    return(
+  return (
+    <View
+      style={[
+        styles.container,
+        currentList && { backgroundColor: currentList.color },
+      ]}
+    >
+      <View style={styles.headerRow}>
+        <Text style={styles.title}>{currentList?.name}</Text>
 
-        <View style={styles.container}>
-            <Text style={styles.title}>
-                {currentList?.name}
-            </Text>
-            <TouchableOpacity
-                onPress={() =>
-                    router.push({
-                    pathname: "/create-task",
-                    params: { listId: listId?.toString() },
-                    })
-                }
-                >
+        <TouchableOpacity
+          style={styles.addButtonContainer}
+          onPress={() =>
+            router.push({
+              pathname: "/create-task",
+              params: { listId: listId?.toString() },
+            })
+          }
+        >
           <Text style={styles.addButton}>＋</Text>
         </TouchableOpacity>
-            <TaskList/>
-        </View>
-    )
+      </View>
+
+      <TaskList />
+    </View>
+  );
 }

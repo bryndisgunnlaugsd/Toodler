@@ -1,11 +1,11 @@
 import { useRouter } from "expo-router";
 import { useEffect, useRef } from "react";
-import { Animated, Image, Text, TouchableOpacity, View } from "react-native";
+import { Animated, Text, TouchableOpacity, View } from "react-native";
 import styles from "./styles";
 
 export function Main() {
     const router = useRouter();
-    
+
     const logoScale = useRef(new Animated.Value(0.5)).current;
     const logoOpacity = useRef(new Animated.Value(1)).current;
     const buttonOpacity = useRef(new Animated.Value(0)).current;
@@ -56,7 +56,7 @@ export function Main() {
                 ]}
                 source={require("../../../assets/images/toodler_logo.png")}
             />
-            
+
             <Animated.View style={{ opacity: buttonOpacity, transform: [{ scale: buttonScale }] }}>
                 <TouchableOpacity
                     onPress={handlePress}

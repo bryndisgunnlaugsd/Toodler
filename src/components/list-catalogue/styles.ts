@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { white } from '@/src/styles/colors';
+import { white } from "@/src/styles/colors";
 
 export default StyleSheet.create({
     container: {
@@ -26,9 +26,9 @@ export default StyleSheet.create({
         shadowRadius: 6,
         elevation: 4,
 
-        position: "relative", 
+        position: "relative",
         zIndex: 1,
-        overflow: "visible",  
+        overflow: "visible",
     },
 
     listItemActive: {
