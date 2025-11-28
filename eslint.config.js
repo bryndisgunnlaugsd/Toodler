@@ -21,19 +21,15 @@ module.exports = defineConfig([
         selector: 'variable',
         format: ['camelCase'],
       },
+      {
+        selector: 'function',
+        format: ['camelCase'],
+        filter: {
+          regex: '^use[A-Z]',
+          match: true,
+        },
+      }
     ],
-
-    // // --- Docstrings ---
-    // 'require-jsdoc': [
-    //   'error',
-    //   {
-    //     require: {
-    //       FunctionDeclaration: true,
-    //       MethodDefinition: true,
-    //     },
-    //   },
-    // ],
-    // 'valid-jsdoc': 'error',
 
     // --- Spacing ---
     'padding-line-between-statements': [

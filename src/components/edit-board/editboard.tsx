@@ -6,6 +6,7 @@ import { ScrollView, Text, TextInput, TouchableOpacity, View } from "react-nativ
 
 import { CameraComponent } from "@/src/components/image/camera";
 import { PhotoPreview } from "@/src/components/image/photopreview";
+import { useImagePicker } from "../image/imagepicker";
 
 type EditBoardCompProps = {
   boardId: number;
@@ -24,6 +25,8 @@ export function EditBoardComp({ boardId }: EditBoardCompProps) {
     existing?.thumbnailPhoto ? { uri: existing.thumbnailPhoto } : null
   );
   const [showCamera, setShowCamera] = useState(false);
+
+  const { pickImage } = useImagePicker((p) => p && setPhoto(p));
 
   useEffect(() => {
     if (existing) {
@@ -90,10 +93,16 @@ export function EditBoardComp({ boardId }: EditBoardCompProps) {
       </View>
 
       {!showCamera && (
-        <TouchableOpacity onPress={() => setShowCamera(true)}>
-          <Text style={styles.cameraIcon}>📷 Change Photo</Text>
+        <TouchableOpacity style={styles.iconLayout} onPress={() => setShowCamera(true)}>
+          <Text style={styles.cameraIcon}>📷</Text>
+          <Text style={styles.input}>Change Photo</Text>
         </TouchableOpacity>
       )}
+
+      <TouchableOpacity style={styles.iconLayout} onPress={pickImage}>
+        <Text style={styles.photoLibrary}>🖼️</Text>
+        <Text style={styles.input}>Change Photo from Library</Text>
+      </TouchableOpacity>
 
       {showCamera && (
         <CameraComponent
