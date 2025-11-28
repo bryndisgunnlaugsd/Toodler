@@ -30,14 +30,16 @@ export default StyleSheet.create({
 
     title: {
         fontSize: 28,
-        fontWeight: "800",
+        fontWeight: "bold",
         marginBottom: 0,
         color: "#000",
+        marginHorizontal:15,
     },
 
     addButtonContainer: {
         width: 40,
         height: 40,
+        marginEnd:15,
         borderRadius: 20,
         backgroundColor: "#ffffff",
         justifyContent: "center",
